@@ -1,0 +1,15 @@
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA_V001\bin\AE_SPICA_V001.dll
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA_V001\bin\AE_SPICA_V001.pdb
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA_V001\bin\AE_SPICA.DAL.dll
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA_V001\bin\AE_SPICA.DAL.pdb
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA_V001\obj\Debug\AE_SPICA_V001.csprojResolveAssemblyReference.cache
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA_V001\obj\Debug\AE_SPICA_V001.dll
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA_V001\obj\Debug\AE_SPICA_V001.pdb
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA_V001\bin\AE_SPICA_V001.dll
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA_V001\bin\AE_SPICA_V001.pdb
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA_V001\bin\AE_SPICA.DAL.dll
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA_V001\bin\log4net.dll
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA_V001\bin\AE_SPICA.DAL.pdb
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA_V001\obj\Debug\AE_SPICA_V001.csprojResolveAssemblyReference.cache
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA_V001\obj\Debug\AE_SPICA_V001.dll
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA_V001\obj\Debug\AE_SPICA_V001.pdb

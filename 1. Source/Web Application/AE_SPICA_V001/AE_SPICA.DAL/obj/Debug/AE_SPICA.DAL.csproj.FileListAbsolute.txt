@@ -1,0 +1,8 @@
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA.DAL\bin\Debug\AE_SPICA.DAL.dll
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA.DAL\bin\Debug\AE_SPICA.DAL.pdb
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA.DAL\obj\Debug\AE_SPICA.DAL.dll
+E:\Abeo Projects\AE_SPICA_V001\AE_SPICA.DAL\obj\Debug\AE_SPICA.DAL.pdb
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA.DAL\bin\Debug\AE_SPICA.DAL.dll
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA.DAL\bin\Debug\AE_SPICA.DAL.pdb
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA.DAL\obj\Debug\AE_SPICA.DAL.dll
+E:\Abeo-Projects\SPICA Web Source Code\AE_SPICA_V001\AE_SPICA.DAL\obj\Debug\AE_SPICA.DAL.pdb

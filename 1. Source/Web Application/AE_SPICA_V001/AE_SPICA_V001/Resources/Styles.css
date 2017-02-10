@@ -1,0 +1,331 @@
+@charset "utf-8";
+.bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    z-index: -1;
+}
+
+.LoginBox {
+	border: 3px solid white;
+	border-radius: 15px;
+	width:373px;
+	height:250px;
+	position:absolute;
+	left: 50%;
+  	top: 50%;
+	margin-left: -186px;
+    margin-top: -125px;
+	background: #032b4f;
+    z-index: 10;
+}
+
+.Logo  {
+	position:absolute;
+	left: 42%;
+  	top: 35%;
+	margin-left: -120px;
+    margin-top: -165px;
+    z-index: 20;
+}
+
+.LoginInputArea {
+	margin:50px;
+    z-index: 50;
+}
+
+.tdField	{
+	width: 100%;
+	padding: 2px;
+	font-family: 'Segoe UI', Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	color: #032b4f;
+	margin-bottom: 20px;
+}
+
+.ICEButton	{
+	background-color: #3FBBEE;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px;
+	color:#fff;
+	font-family: 'Segoe UI',Tahoma,Verdana,Arial,sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 2px 50px 5px 50px;	
+	text-decoration:none;
+	height: 32px;
+}
+
+.ICEButton:hover	{
+	background-color:#001424;
+	cursor:pointer;
+}
+
+.LoginBtn	{
+	width: 100%;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.RequestAccessText	{
+	color:#2e5477;
+	font-family: 'Segoe UI',Tahoma,Verdana,Arial,sans-serif;
+	font-size: 12px;
+	text-decoration:none;
+}
+
+.RequestAccessText:Hover	{
+	color: #6e8daa;
+	text-decoration: none;
+}
+
+.LoginBoxFade {
+	width:400px;
+	height:70px;
+	position:absolute;
+	left: 50%;
+  	top: 50%;
+	margin-left: -186px;
+    margin-top: 128px;
+	background: url(imgLoginBoxFade.png);
+    z-index: 30;
+	background-repeat:no-repeat
+}
+
+.Label {
+    color: White;
+    font-weight:bold;
+    font-family: 'Segoe UI',Tahoma,Verdana,Arial,sans-serif;
+}
+
+.Error {
+    color: #EA0A0A;
+    font-weight:600;
+    font-family: 'Segoe UI',Tahoma,Verdana,Arial,sans-serif;
+}
+
+.LoginTextbox 
+{
+    margin-left:27px;
+    width:193px;
+    border-radius: 5px;
+}
+
+.LoginDropdown
+{
+    margin-left:27px;
+    width:195px;
+    height:22px;
+    border-radius: 5px;
+    }
+
+.LoginTable
+{
+    width:400px;
+    margin-left :-30px;
+    margin-top : -10px;
+    height:140px;
+}
+
+.noborder
+{
+    border:none;
+}
+
+.noborder td
+{
+    border:none;
+}
+
+.noborder th
+{
+    border:none;
+    background : #30426A;
+    color:#FFFFFF;
+}
+
+.container
+{
+    box-shadow: 0 0 10px gray;
+    background : #FFFFFF;
+    padding:5px;
+}
+
+.Maincontainer
+{
+    box-shadow: 0 0 10px gray;
+    background : #FFFFFF;
+    padding:5px;
+    margin:0 0 5px 15px;
+}
+
+.myTableClass td {
+    padding: 3px;
+}
+
+.HeaderBox
+{
+    line-height : 35px;
+    margin-top:10px;
+    padding-left:10px;
+        color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    border-radius: 5px;
+}
+
+.ScreenBtn	{
+	width:50%;
+	margin-top: 10px;
+	margin-bottom:5px;
+}
+
+.ScreenICEButton	
+{
+	background-color: #3FBBEE;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px;
+	color:#fff;
+	font-family: 'Segoe UI',Tahoma,Verdana,Arial,sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration:none;
+	height: 32px;
+}
+
+.ScreenICEButton disabled	
+{
+	background-color:Gray;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px;
+	color:#fff;
+	font-family: 'Segoe UI',Tahoma,Verdana,Arial,sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration:none;
+	height: 32px;
+}
+
+.ScreenuploadButton 	
+{
+	background-color: #3FBBEE;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px;
+	color:#fff;
+	font-family: 'Segoe UI',Tahoma,Verdana,Arial,sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration:none;
+	height: 32px;
+	margin-left : 27px;
+	margin-top : 5px;
+}
+
+.SpaceBox
+{
+    line-height : 35px;
+    margin-top:10px;
+    padding-left:10px;
+    border-radius: 5px;
+}
+
+.Total
+{  
+    font-weight:bold; 
+    color:Red;
+}
+
+.MovingRight
+{   
+   margin-right:16%;
+}
+
+/*Calendar Control CSS*/
+        .cal_Theme1 .ajax__calendar_container
+        {
+            background-color: #DEF1F4;
+            border: solid 1px #77D5F7;
+            width:200px;
+            z-index:1000;
+        }
+        
+        .cal_Theme1 .ajax__calendar_header
+        {
+            background-color: #ffffff;
+            margin-bottom: 4px;
+        }
+        
+        .cal_Theme1 .ajax__calendar_title, .cal_Theme1 .ajax__calendar_next, .cal_Theme1 .ajax__calendar_prev
+        {
+            color: #004080;
+            padding-top: 3px;
+        }
+        
+        .cal_Theme1 .ajax__calendar_body
+        {
+            background-color: #ffffff;
+            border: solid 1px #77D5F7;
+        }
+        
+        .cal_Theme1 .ajax__calendar_dayname
+        {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 4px;
+            margin-top: 2px;
+            color: #004080;
+        }
+        
+        .cal_Theme1 .ajax__calendar_day
+        {
+            color: #004080;
+            text-align: center;
+        }
+        
+        .cal_Theme1 .ajax__calendar_hover .ajax__calendar_day, .cal_Theme1 .ajax__calendar_hover .ajax__calendar_month, .cal_Theme1 .ajax__calendar_hover .ajax__calendar_year, .cal_Theme1 .ajax__calendar_active
+        {
+            color: #004080;
+            font-weight: bold;
+            background-color: #DEF1F4;
+        }
+        
+        .cal_Theme1 .ajax__calendar_today
+        {
+            font-weight: bold;
+        }
+        
+        .cal_Theme1 .ajax__calendar_other, .cal_Theme1 .ajax__calendar_hover .ajax__calendar_today, .cal_Theme1 .ajax__calendar_hover .ajax__calendar_title
+        {
+            color: #bbbbbb;
+        }
+        
+        
+#MainTable a
+{
+    color:White;
+}
+
+#MainTable a:hover
+{
+    color:White;
+    text-decoration : none;
+}
+
+.mandatory
+{
+    color:Red;
+    font-size:larger;
+    font-weight:500;
+    margin-left:5px;
+}
+

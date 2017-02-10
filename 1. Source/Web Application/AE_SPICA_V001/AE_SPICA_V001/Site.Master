@@ -1,0 +1,178 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="AE_SPICA_V001.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" ng-app="RDash">
+<head runat="server">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <!-- STYLES -->
+    <link rel="stylesheet" href="/lib/css/main.min.css" />
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="/lib/js/main.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- Custom Scripts -->
+    <script type="text/javascript" src="/js/dashboard.min.js"></script>
+    <link href="Resources/Styles.css" rel="Stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body ng-controller="MasterCtrl">
+    <form id="frmMaster" runat="server">
+    <asp:ScriptManager EnablePartialRendering="false" ID="ScriptManagerMain" runat="server"
+        AsyncPostBackTimeout="360000">
+    </asp:ScriptManager>
+    <div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak>
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar">
+                <li class="sidebar-main"><a ng-click="toggleSidebar()">Dashboard <span class="menu-icon glyphicon glyphicon-transfer">
+                </span></a></li>
+                <li class="sidebar-title"><span>NAVIGATION</span></li>
+                <li class="sidebar-list" id="leftMenuFiles" runat="server"><a href="File.aspx">Create
+                    File <span class="menu-icon fa fa-file-o"></span></a></li>
+                <li class="sidebar-list" id="leftMenuTE" runat="server"><a href="TimeEntry.aspx">Time
+                    Entry <span class="menu-icon fa fa-clock-o"></span></a></li>
+                <li class="sidebar-list" id="leftMenuEEntry" runat="server"><a href="ExpenseEntry.aspx">
+                    Expense Entry <span class="menu-icon fa fa-external-link-square"></span></a>
+                </li>
+                <li class="sidebar-list" id="leftMenuApp" runat="server"><a href="Approval.aspx">Approval
+                    <span class="menu-icon fa fa-thumbs-o-up"></span></a></li>
+                <%--myhover--%>
+                <li class="sidebar-list" id="leftMenuReg" runat="server"><a href="Registration.aspx">
+                    User Registration <span class="menu-icon fa fa-users"></span></a></li>
+                <li class="sidebar-list" id="leftMenuBR" runat="server"><a href="BillingRate.aspx">Billing
+                    Rate Configuration <span class="menu-icon fa fa-star"></span></a></li>
+                <li class="sidebar-list" id="leftMenuCM" runat="server"><a href="ClubMaster.aspx">Club
+                    Master <span class="menu-icon fa fa-external-link-square"></span></a></li>
+                <li class="sidebar-list" id="leftMenuAS" runat="server"><a href="ApprovalSetup.aspx">
+                    Approval Setup <span class="menu-icon fa fa-tasks"></span></a></li>
+                <li class="sidebar-list" id="leftMenuRep" runat="server"><a href="" onclick="$('ul#contentUsers').toggle();">
+                    Reports <span class="menu-icon fa fa-flag-o"></span></a>
+                    <ul id="contentUsers" style="display: none;" class="sidebarSubmenu">
+                        <li><a href="ApprovedBillReport.aspx">Approved Bill Report</a></li>
+                        <li><a href="NotYetBillReport.aspx">Net Yet Bill Report</a></li>
+                        <li><a href="DetailedBillReport.aspx">Detailed Bill Report</a></li>
+                        <li><a href="TimEntryReport.aspx">Time Entry Report</a></li>
+                        <li><a href="NoActiveFilesReport.aspx">No Active Files Report</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-list" id="leftMenuChangePassword" runat="server"><a href="ChangePassword.aspx">
+                    Change Password <span class="menu-icon fa fa-unlock-alt"></span></a></li>
+                <li class="sidebar-list" id="leftMenuLO" runat="server"><a href="Login.aspx">Log out
+                    <span class="menu-icon fa fa-sign-out"></span></a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="col-xs-4">
+                    <a href="#" target="_blank">Details </a>
+                </div>
+                <div class="col-xs-4">
+                    <a href="#" target="_blank">About </a>
+                </div>
+                <div class="col-xs-4">
+                    <a href="#">Support </a>
+                </div>
+            </div>
+        </div>
+        <!-- End Sidebar -->
+        <div id="content-wrapper">
+            <div class="page-content">
+                <!-- Header Bar -->
+                <div class="row header">
+                    <div class="col-xs-12">
+                        <div class="user pull-right">
+                            <div class="item dropdown">
+                                <a href="#" class="dropdown-toggle">
+                                    <img src="Images/avatar.jpg" alt="User" />
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <li class="dropdown-header">
+                                        <asp:Label ID="lblUser" runat="server"></asp:Label></li>
+                                    <li class="divider"></li>
+                                    <%--<li class="link"><a href="#">Profile </a></li>
+                                    <li class="link"><a href="#">Menu Item </a></li>
+                                    <li class="link"><a href="#">Menu Item </a></li>
+                                    <li class="divider"></li>--%>
+                                    <li class="link"><a href="Login.aspx">Logout </a></li>
+                                </ul>
+                            </div>
+                            <div class="item dropdown">
+                                <a href="#" class="dropdown-toggle"><i class="fa fa-bell-o"></i></a>
+                                <ul class="dropdown-menu dropdown-menu-right">
+                                    <%-- <li class="dropdown-header">Notifications </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Server Down!</a> </li>--%>
+                                </ul>
+                            </div>
+                            <div class="item dropdown">
+                                <div style="margin-top: 20px;">
+                                    <asp:Label ID="lblCompany" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="meta">
+                            <div class="page">
+                                Dashboard
+                            </div>
+                            <div class="breadcrumb-links">
+                                Home /
+                                <asp:Label ID="lblScreenName" runat="server"></asp:Label>
+                            </div>
+                        </div>
+                        <asp:Panel ID="panelUpdateProgress" runat="server" CssClass="updateProgress">
+                            <asp:UpdateProgress ID="UpdateProg1" DisplayAfter="0" runat="server">
+                                <ProgressTemplate>
+                                    <div style="position: fixed; top: 50%; left: 50%; z-index: +1000;">
+                                        <img src="Images/loading.gif" style="vertical-align: middle" alt="Processing" height="50px"
+                                            width="50px" />
+                                    </div>
+                                </ProgressTemplate>
+                            </asp:UpdateProgress>
+                        </asp:Panel>
+                    </div>
+                </div>
+                <%--<script type="text/javascript">
+                    var path = document.URL.split("/");
+                    switch (path[3]) {
+                        case "File.aspx#":
+                            alert(path[3]);
+                            document.getElementById("leftMenuFile").setAttribute("class", "sidebar-list myhover");
+                            break;
+                        case "TimeEntry.aspx#":
+                            document.getElementById("leftMenuTimeEntry").setAttribute("class", "sidebar-list myhover");
+                            break;
+                        case "ExpenseEntry.aspx#":
+                            document.getElementById("leftMenuExpenseEntry").setAttribute("class", "sidebar-list myhover");
+                            break;
+                        case "Approval.aspx#":
+                            document.getElementById("leftMenuApproval").setAttribute("class", "sidebar-list myhover");
+                            break;
+                        case "Registration.aspx#":
+                            document.getElementById("leftMenuRegistration").setAttribute("class", "sidebar-list myhover");
+                            break;
+                        case "BillingRate.aspx#":
+                            document.getElementById("leftMenuBillingRate").setAttribute("class", "sidebar-list myhover");
+                            break;
+                        case "ClubMaster.aspx#":
+                            document.getElementById("leftMenuClubMaster").setAttribute("class", "sidebar-list myhover");
+                            break;
+                    }
+                   
+                </script>--%>
+                <!-- End Header Bar -->
+                <!-- Main Content -->
+                <div ui-view>
+                    <div style="margin-left: 10px;">
+                        <asp:ContentPlaceHolder ID="CPHSiteMaster" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+            <!-- End Page Content -->
+        </div>
+        <!-- End Content Wrapper -->
+    </div>
+    <!-- End Page Wrapper -->
+    </form>
+</body>
+</html>

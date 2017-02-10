@@ -1,0 +1,70 @@
+[09/02/2016 12:09:49][                          Main] Starting Function
+[09/02/2016 12:09:51][                          Main] Calling GetSystemIntializeInfo()
+[09/02/2016 12:09:52][      GetSystemIntializeInfo()] Starting Function
+[09/02/2016 12:09:52][      GetSystemIntializeInfo()] Starting Function
+[09/02/2016 12:09:52][      GetSystemIntializeInfo()] Completed with SUCCESS
+[09/02/2016 12:09:53][                          Main] Calling Function ConnectToCompany()
+[09/02/2016 12:09:59][            ConnectToCompany()] Company connected  successfully SPICA_HL
+[09/02/2016 12:26:51][                          Main] Starting Function
+[09/02/2016 12:26:53][                          Main] Calling GetSystemIntializeInfo()
+[09/02/2016 12:26:53][      GetSystemIntializeInfo()] Starting Function
+[09/02/2016 12:26:53][      GetSystemIntializeInfo()] Starting Function
+[09/02/2016 12:26:53][      GetSystemIntializeInfo()] Completed with SUCCESS
+[09/02/2016 12:26:55][                          Main] Calling Function ConnectToCompany()
+[09/02/2016 12:35:43][                          Main] Starting Function
+[09/02/2016 12:35:46][                          Main] Calling GetSystemIntializeInfo()
+[09/02/2016 12:35:46][      GetSystemIntializeInfo()] Starting Function
+[09/02/2016 12:35:46][      GetSystemIntializeInfo()] Starting Function
+[09/02/2016 12:35:46][      GetSystemIntializeInfo()] Completed with SUCCESS
+[09/02/2016 12:36:02][                          Main] Calling Function ConnectToCompany()
+[11/29/2016 15:10:34][                          Main] Starting Function
+[11/29/2016 15:10:39][                          Main] Calling GetSystemIntializeInfo()
+[11/29/2016 15:10:43][      GetSystemIntializeInfo()] Starting Function
+[11/29/2016 15:10:44][      GetSystemIntializeInfo()] Starting Function
+[11/29/2016 15:10:57][      GetSystemIntializeInfo()] Completed with SUCCESS
+[11/29/2016 15:11:16][                          Main] Calling Function ConnectToCompany()
+[11/29/2016 15:11:17][            ConnectToCompany()] Starting Function 
+[11/29/2016 15:11:17][            ConnectToCompany()] Connecting to the Company  SPICA_HL
+[11/29/2016 15:11:23][            ConnectToCompany()] Company connected  successfully SPICA_HL
+[11/29/2016 15:13:42][                          Main] Starting Function
+[11/29/2016 15:13:45][                          Main] Calling GetSystemIntializeInfo()
+[11/29/2016 15:13:45][      GetSystemIntializeInfo()] Starting Function
+[11/29/2016 15:13:45][      GetSystemIntializeInfo()] Starting Function
+[11/29/2016 15:13:45][      GetSystemIntializeInfo()] Completed with SUCCESS
+[11/29/2016 15:13:47][                          Main] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[11/29/2016 15:13:49][                          Main] Calling Function ConnectToCompany()
+[11/29/2016 15:13:50][            ConnectToCompany()] Starting Function 
+[11/29/2016 15:13:50][            ConnectToCompany()] Connecting to the Company  SPICA_HL
+[11/29/2016 15:13:55][            ConnectToCompany()] Company connected  successfully SPICA_HL
+[11/29/2016 15:41:01][                          Main] Starting Function
+[11/29/2016 15:41:01][                          Main] Calling GetSystemIntializeInfo()
+[11/29/2016 15:41:01][      GetSystemIntializeInfo()] Starting Function
+[11/29/2016 15:41:01][      GetSystemIntializeInfo()] Starting Function
+[11/29/2016 15:41:01][      GetSystemIntializeInfo()] Completed with SUCCESS
+[11/29/2016 15:41:01][                          Main] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[11/29/2016 15:41:01][                          Main] Calling Function ConnectToCompany()
+[11/29/2016 15:41:01][            ConnectToCompany()] Starting Function 
+[11/29/2016 15:41:01][            ConnectToCompany()] Connecting to the Company  SPICA_HL
+[11/29/2016 15:41:20][            ConnectToCompany()] Company connected  successfully SPICA_HL
+[11/29/2016 15:41:20][                          Main] Branch Master SELECT T0.[Code], T0.[Name], T0.[U_AE_Connection] FROM [dbo].[@BRANCH_MASTER]  T0
+[11/29/2016 15:41:20][                          Main] Calling ExecuteSQLQuery_DT() 
+[11/29/2016 15:41:20][      ExecExecuteSQLQuery_DT()] Starting Function...
+[11/29/2016 15:41:20][      ExecExecuteSQLQuery_DT()] Completed Successfully.
+[11/29/2016 15:41:20][                          Main] BP SYNC SELECT Top(6)  T0.[Code], T0.[Name], T0.[U_BPCode] FROM [dbo].[@AB_BP_SYNC]  T0 WHERE T0.[U_Locked]  = 'N' and  ISNULL(T0.[U_Status],'') <> 'SUCCESS'
+[11/29/2016 15:41:20][                          Main] Calling ExecuteSQLQuery_DT() 
+[11/29/2016 15:41:20][      ExecExecuteSQLQuery_DT()] Starting Function...
+[11/29/2016 15:41:20][      ExecExecuteSQLQuery_DT()] Completed Successfully.
+[11/29/2016 15:41:20][                          Main] Locking the BP Code update [@AB_BP_SYNC]  set U_Locked = 'Y' where Code in ('2')
+[11/29/2016 15:41:20][                          Main] Calling Function ConnectToCompany()
+[11/29/2016 15:41:20][            ConnectToCompany()] Starting Function 
+[11/29/2016 15:41:20][            ConnectToCompany()] Connecting to the Company  SPICAID
+[11/29/2016 15:41:23][            ConnectToCompany()] Company connected  successfully SPICAID
+[11/29/2016 15:41:25][       UpdateBPtoAllBranches()] Starting Function
+[11/29/2016 15:41:25][       UpdateBPtoAllBranches()] Getting Contact Info select  ROW_NUMBER() OVER(ORDER BY T1.CntctCode ) -1 [No], T1.CntctCode , T1.Name , T1.Position  from ocpr t1  where T1.cardcode = 'C-Test' order by t1.CntctCode 
+[11/29/2016 15:41:25][       UpdateBPtoAllBranches()] Conected with Company SPICAID
+[11/29/2016 15:41:25][       UpdateBPtoAllBranches()] Attempting to Update BP C-Test
+[11/29/2016 15:41:25][       UpdateBPtoAllBranches()] Attempting Contact Employees
+[11/29/2016 15:41:25][       UpdateBPtoAllBranches()] oBP.ContactEmployees.Name 
+[11/29/2016 15:41:25][       UpdateBPtoAllBranches()] Updating BP C-Test
+[11/29/2016 15:41:25][       UpdateBPtoAllBranches()] Completed with SUCCESS
+[11/29/2016 15:41:59][                          Main] Completed With SUCCESS 

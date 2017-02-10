@@ -1,0 +1,31 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="LoginSite.Master.cs" Inherits="AE_SPICA_V001.LoginSite" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="Resources/Styles.css" rel="Stylesheet" type="text/css" />
+    <title>Login: SPICA</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="frmLoginSite" runat="server">
+    <asp:ScriptManager ID="ScriptManager2" EnablePartialRendering="true"  runat="server" AsyncPostBackTimeout="360000">
+    </asp:ScriptManager>
+    <div>
+        <asp:Panel ID="panelUpdateProgress" runat="server" CssClass="updateProgress">
+            <asp:UpdateProgress ID="UpdateProg1" DisplayAfter="0" runat="server">
+                <ProgressTemplate>
+                    <div style="position: fixed; top: 50%; left: 50%; z-index: +1000;">
+                        <img src="Images/loading.gif" style="vertical-align: middle" alt="Processing" height="50px"
+                            width="50px" />
+                    </div>
+                </ProgressTemplate>
+            </asp:UpdateProgress>
+        </asp:Panel>
+        <asp:ContentPlaceHolder ID="CPHLoginSite" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

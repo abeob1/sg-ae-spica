@@ -1,0 +1,159 @@
+[27-01-2016 3:20:06 PM][                  CreateClub()] Invalid column name 'ClubName'.
+[27-01-2016 3:22:35 PM][                  CreateClub()] Column 'ClubAddress' does not belong to table tbl_Club.
+[27-01-2016 3:56:51 PM][                  SearchClub()] Incorrect syntax near '%'.
+[27-01-2016 4:47:19 PM][                  UpdateClub()] Column 'ClubAddress' does not belong to table tbl_Club.
+[28-01-2016 4:24:07 PM][              CreateApprover()] Cannot insert the value NULL into column 'LastApprovedMonth', table 'SpicaWeb.dbo.tbl_ApprovalSetup'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+[28-01-2016 10:26:11 PM][           UpdateBillingRate()] Invalid column name 'UserCode'.
+Invalid column name 'Time'.
+Invalid column name 'BillableUnit'.
+Invalid column name 'HourlyRate'.
+Invalid column name 'Currency'.
+[28-01-2016 10:38:15 PM][           UpdateBillingRate()] Invalid column name 'UserCode'.
+Invalid column name 'Time'.
+Invalid column name 'BillableUnit'.
+Invalid column name 'HourlyRate'.
+Invalid column name 'Currency'.
+[28-01-2016 10:55:24 PM][           UpdateBillingRate()] Violation of PRIMARY KEY constraint 'pk_Billing'. Cannot insert duplicate key in object 'dbo.tbl_Billing'.
+The statement has been terminated.
+[03-02-2016 12:05:59 PM][           UpdateBillingRate()] Error converting data type varchar to bigint.
+[03-02-2016 12:10:35 PM][           UpdateBillingRate()] The connection was not closed. The connection's current state is open.
+[03-02-2016 12:42:04 PM][           UpdateBillingRate()] Incorrect syntax near '03'.
+[03-02-2016 1:00:22 PM][           UpdateBillingRate()] Incorrect syntax near 'YYYY02DD'.
+[03-02-2016 1:03:04 PM][           UpdateBillingRate()] Incorrect syntax near '20160203'.
+[03-02-2016 2:36:17 PM][         SearchFileReference()] Incorrect syntax near '('.
+[03-02-2016 2:41:17 PM][         SearchFileReference()] Incorrect syntax near ','.
+[03-02-2016 4:32:27 PM][         SearchFileReference()] Incorrect syntax near '45'.
+[03-02-2016 4:38:28 PM][         SearchFileReference()] Incorrect syntax near '45'.
+[03-02-2016 6:24:02 PM][         UpdateFileReference()] The connection was not closed. The connection's current state is open.
+[03-02-2016 6:32:06 PM][         UpdateFileReference()] The connection was not closed. The connection's current state is open.
+[07-03-2016 4:46:28 PM][              GetTaskDetails()] Conversion failed when converting the varchar value '-- Select --' to data type int.
+[07-03-2016 4:48:16 PM][              GetTaskDetails()] Conversion failed when converting the varchar value '-- Select --' to data type int.
+[08-03-2016 12:25:54 PM][           UpdateBillingRate()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+[08-03-2016 12:27:31 PM][           UpdateBillingRate()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+[08-03-2016 4:12:06 PM][             CreateTimeEntry()] Error converting data type varchar to numeric.
+[08-03-2016 4:12:48 PM][             CreateTimeEntry()] Column 'Id' does not belong to table tbl_TimeEntry.
+[08-03-2016 4:15:00 PM][             CreateTimeEntry()] The connection was not closed. The connection's current state is open.
+[08-03-2016 4:20:01 PM][             CreateTimeEntry()] The connection was not closed. The connection's current state is open.
+[09-03-2016 3:10:17 AM][          CreateExpenseEntry()] Implicit conversion from data type varchar to binary is not allowed. Use the CONVERT function to run this query.
+[09-03-2016 3:18:03 AM][          UpdateExpenseEntry()] Error converting data type varchar to bigint.
+[09-03-2016 3:18:41 AM][          UpdateExpenseEntry()] Error converting data type varchar to bigint.
+[09-03-2016 9:22:47 AM][          CreateExpenseEntry()] String was not recognized as a valid DateTime.
+[09-03-2016 9:59:11 AM][          CreateExpenseEntry()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+[09-03-2016 10:00:26 AM][          CreateExpenseEntry()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+[09-03-2016 1:37:49 PM][          CreateExpenseEntry()] Implicit conversion from data type varchar to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+[09-03-2016 1:39:04 PM][          CreateExpenseEntry()] Implicit conversion from data type varchar to varbinary(max) is not allowed. Use the CONVERT function to run this query.
+[09-03-2016 4:14:22 PM][                  GetRecords()] Invalid length parameter passed to the RIGHT function.
+[09-03-2016 4:16:14 PM][                  GetRecords()] Invalid length parameter passed to the RIGHT function.
+[09-03-2016 4:17:00 PM][                  GetRecords()] Must declare the scalar variable "@".
+[09-03-2016 4:17:35 PM][                  GetRecords()] Invalid length parameter passed to the RIGHT function.
+[09-03-2016 4:19:56 PM][                  GetRecords()] Invalid length parameter passed to the RIGHT function.
+[10-03-2016 8:16:31 AM][                  GetRecords()] Invalid length parameter passed to the RIGHT function.
+[10-03-2016 8:16:57 AM][                  GetRecords()] Invalid length parameter passed to the RIGHT function.
+[10-03-2016 8:20:47 AM][                  GetRecords()] Invalid length parameter passed to the RIGHT function.
+[10-03-2016 6:56:10 PM][              SendToApproval()] Procedure or function 'AE_SP004_SendToApproval' expects parameter '@TypeOfBill', which was not supplied.
+[11-03-2016 2:26:58 PM][       ApproveSelectedVessel()] Procedure or function AE_SP005_ApprovalDetails has too many arguments specified.
+[11-03-2016 4:20:54 PM][        RejectSelectedVessel()] Must declare the scalar variable "@Ids".
+[17-03-2016 11:56:02 PM][           UpdateBillingRate()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[17-03-2016 11:56:02 PM][           UpdateBillingRate()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[17-03-2016 11:58:00 PM][           UpdateBillingRate()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[17-03-2016 11:58:00 PM][           UpdateBillingRate()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[17-03-2016 11:59:06 PM][           UpdateBillingRate()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[17-03-2016 11:59:27 PM][           UpdateBillingRate()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[18-03-2016 12:02:07 AM][           UpdateBillingRate()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[18-03-2016 12:02:07 AM][           UpdateBillingRate()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[18-03-2016 12:03:53 AM][           UpdateBillingRate()] There are fewer columns in the INSERT statement than values specified in the VALUES clause. The number of values in the VALUES clause must match the number of columns specified in the INSERT statement.
+[18-03-2016 12:09:35 AM][         CreateFileReference()] Column 'Id' does not belong to table tbl_FileReference.
+[18-03-2016 1:21:05 AM][           GetExpenseDetails()] Invalid column name 'TaskId'.
+ORDER BY items must appear in the select list if the statement contains a UNION, INTERSECT or EXCEPT operator.
+[18-03-2016 12:11:14 PM][           UpdateBillingRate()] String was not recognized as a valid DateTime.
+[18-03-2016 12:18:39 PM][                  GetRecords()] Incorrect syntax near the keyword 'CASE'.
+[18-03-2016 2:03:29 PM][             CreateTimeEntry()] Incorrect syntax near ')'.
+[21-03-2016 12:11:00 AM][         GetTimeEntryRecords()] Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression.
+[21-03-2016 12:11:25 AM][         GetTimeEntryRecords()] Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression.
+[21-03-2016 1:27:39 AM][                  GetRecords()] Must declare the scalar variable "@CompanyCode".
+Incorrect syntax near ')'.
+[21-03-2016 1:28:54 AM][                  GetRecords()] Must declare the scalar variable "@CompanyCode".
+Incorrect syntax near ')'.
+[21-03-2016 1:29:46 AM][                  GetRecords()] Must declare the scalar variable "@CompanyCode".
+Incorrect syntax near 'BEGINSELECT'.
+Incorrect syntax near the keyword 'else'.
+Incorrect syntax near 'BEGINSELECT'.
+Incorrect syntax near the keyword 'else'.
+Incorrect syntax near the keyword 'else'.
+[21-03-2016 1:31:02 AM][                  GetRecords()] Must declare the scalar variable "@CompanyCode".
+Incorrect syntax near 'BEGINSELECT'.
+Incorrect syntax near the keyword 'else'.
+Incorrect syntax near 'BEGINSELECT'.
+Incorrect syntax near the keyword 'else'.
+Incorrect syntax near the keyword 'else'.
+[21-03-2016 1:37:09 AM][                  GetRecords()] Must declare the scalar variable "@CompanyCode".
+[21-03-2016 1:38:11 AM][                  GetRecords()] Must declare the scalar variable "@CompanyCode".
+[21-03-2016 1:48:24 AM][         SearchFileReference()] Incorrect syntax near the keyword 'ELSE'.
+Incorrect syntax near the keyword 'ELSE'.
+Incorrect syntax near 'IDEND'.
+[21-03-2016 2:46:09 AM][              SendToApproval()] Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression.
+The statement has been terminated.
+[21-03-2016 2:48:39 AM][              SendToApproval()] Subquery returned more than 1 value. This is not permitted when the subquery follows =, !=, <, <= , >, >= or when the subquery is used as an expression.
+The statement has been terminated.
+[22-04-2016 8:29:39 AM][         CreateFileReference()] Index and length must refer to a location within the string.
+Parameter name: length
+[22-04-2016 2:38:38 PM][          GetNumberingSeries()] Incorrect syntax near the keyword 'AND'.
+[22-04-2016 2:44:08 PM][          GetNumberingSeries()] Incorrect syntax near the keyword 'AND'.
+[28-04-2016 11:39:14 AM][         UpdateFileReference()] Column 'BillingAddres' does not belong to table tbl_FileReference.
+[28-04-2016 11:41:04 AM][         UpdateFileReference()] Column 'BillingAddres' does not belong to table tbl_FileReference.
+[29-04-2016 5:44:07 PM][          CreateExpenseEntry()] Incorrect syntax near 'S'.
+Unclosed quotation mark after the character string ')'.
+[02-05-2016 4:47:25 PM][         UpdateFileReference()] Error converting data type varchar to bigint.
+[02-05-2016 4:48:42 PM][         UpdateFileReference()] Error converting data type varchar to bigint.
+[05/03/2016 1:51:05 AM][                   GetBPCode()] Format of the initialization string does not conform to specification starting at index 0.
+[05/03/2016 2:03:03 AM][                   GetBPCode()] Format of the initialization string does not conform to specification starting at index 0.
+[05/03/2016 2:07:42 AM][                   GetBPCode()] Format of the initialization string does not conform to specification starting at index 0.
+[05/03/2016 3:30:03 AM][            GetDefaultClubBP()] Column 'No' does not belong to table Table.
+[05/03/2016 6:02:51 AM][                  GetCompany()] Incorrect syntax near the keyword 'from'.
+[05/25/2016 10:54:56 AM][         GetTimeEntryRecords()] Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+[05/25/2016 2:15:14 PM][         GetTimeEntryRecords()] Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+[05/25/2016 2:19:44 PM][         GetTimeEntryRecords()] Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+[05/25/2016 3:09:26 PM][                  GetRecords()] Incorrect syntax near the keyword 'and'.
+[05/25/2016 3:11:00 PM][                  GetRecords()] Incorrect syntax near the keyword 'and'.
+[05/25/2016 3:33:35 PM][         UpdateFileReference()] Error converting data type varchar to bigint.
+[05/25/2016 3:36:33 PM][         UpdateFileReference()] Error converting data type varchar to bigint.
+[05/25/2016 3:52:32 PM][         UpdateFileReference()] Error converting data type varchar to bigint.
+[05/31/2016 3:25:18 PM][              SendToApproval()] Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+[06/01/2016 12:35:57 PM][          GetApprovalDetails()] Invalid column name 'ApprovalStatus'.
+[06/01/2016 12:48:14 PM][         GetTimeEntryRecords()] Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+[06/01/2016 12:49:07 PM][         GetTimeEntryRecords()] Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+Invalid column name 'ApprovalStatus'.
+[06/01/2016 2:12:16 PM][       ApproveSelectedVessel()] Incorrect syntax near 'AES'.
+[06/01/2016 2:16:16 PM][       ApproveSelectedVessel()] Incorrect syntax near 'AES'.
+[06/01/2016 8:28:34 PM][             Run_QueryString()] Invalid column name 'Name'.
+ORDER BY items must appear in the select list if the statement contains a UNION, INTERSECT or EXCEPT operator.
+[06/01/2016 8:28:34 PM][                GetBPContact()] Invalid column name 'Name'.
+ORDER BY items must appear in the select list if the statement contains a UNION, INTERSECT or EXCEPT operator.
+[06/01/2016 8:40:58 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.
+[06/01/2016 8:41:24 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.
+[06/01/2016 8:41:35 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.
+[06/01/2016 8:56:07 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.
+[06/06/2016 2:27:22 PM][                  CreateClub()] Incorrect syntax near 's'.
+Unclosed quotation mark after the character string ''.
+[06/06/2016 2:27:52 PM][                  CreateClub()] Incorrect syntax near 's'.
+Unclosed quotation mark after the character string ''.
+[06/06/2016 2:28:54 PM][                  UpdateClub()] Incorrect syntax near 's'.
+Unclosed quotation mark after the character string ''.

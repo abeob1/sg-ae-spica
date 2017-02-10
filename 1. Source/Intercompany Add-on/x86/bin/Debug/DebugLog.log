@@ -1,0 +1,15 @@
+[08/23/2016 19:04:41][                         BP Update Event] Calling Function UpdateBPtoAllBranches()
+[08/23/2016 19:04:41][                         BP Update Event]  BP SYNC insert into [@AB_BP_SYNC] (Code, Name , U_BPCode,U_Status) values ((select isnull(max(cast(code as integer)),0) + 1 from [@AB_BP_SYNC]),(select isnull(max(cast(code as integer)),0) + 1 from [@AB_BP_SYNC]),'C-AFG01        ' , 'Open')
+[08/23/2016 19:08:50][                         BP Update Event] Calling Function UpdateBPtoAllBranches()
+[08/23/2016 19:08:50][                         BP Update Event]  BP SYNC insert into [@AB_BP_SYNC] (Code, Name , U_BPCode, Locked,U_Status) values ((select isnull(max(cast(code as integer)),0) + 1 from [@AB_BP_SYNC]),(select isnull(max(cast(code as integer)),0) + 1 from [@AB_BP_SYNC]),'C-AFG01        ' , 'N', 'Open')
+[08/23/2016 19:09:51][                         BP Update Event] Calling Function UpdateBPtoAllBranches()
+[08/23/2016 19:09:51][                         BP Update Event]  BP SYNC insert into [@AB_BP_SYNC] (Code, Name , U_BPCode, U_Locked,U_Status) values ((select isnull(max(cast(code as integer)),0) + 1 from [@AB_BP_SYNC]),(select isnull(max(cast(code as integer)),0) + 1 from [@AB_BP_SYNC]),'C-AFG01        ' , 'N', 'Open')
+[08/23/2016 19:10:12][                            BP Add Event] Calling Function CreateBPtoAllBranches()
+[08/23/2016 19:10:12][                            BP Add Event]  BP SYNC insert into [@AB_BP_SYNC] (Code, Name , U_BPCode, U_Locked,U_Status) values ((select isnull(max(cast(code as integer)),0) + 1 from [@AB_BP_SYNC]),(select isnull(max(cast(code as integer)),0) + 1 from [@AB_BP_SYNC]),'C-Test         ' ,'N', 'Open')
+[12/01/2016 14:32:49][                      ConnectToCompany()] Company not connected SPICA_HL - Unable to access SBO-Common database
+[12/01/2016 14:37:04][                      ConnectToCompany()] Company not connected SPICA_HL - Unable to access SBO-Common database
+[12/01/2016 14:43:47][                      ConnectToCompany()] Company connected  successfully SPICA_HL
+[12/01/2016 14:48:26][                      ConnectToCompany()] Company connected  successfully SPICA_HL
+[12/01/2016 14:52:28][                      ConnectToCompany()] Company connected  successfully SPICA_HL
+[12/01/2016 14:56:26][                      ConnectToCompany()] Company connected  successfully SPICA_HL
+[12/01/2016 16:00:25][                      ConnectToCompany()] Company connected  successfully SPICA_HL

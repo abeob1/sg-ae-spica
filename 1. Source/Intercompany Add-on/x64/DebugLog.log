@@ -1,0 +1,20 @@
+[12/01/2016 13:11:26][           Branch ARInvoice Update Event] Calling Function Add_Update_Documents()
+[12/01/2016 13:11:26][                  Add_Update_Documents()] Starting Function 4721
+[12/01/2016 13:11:26][                  Add_Update_Documents()] Select CurSource from OINV where DocEntry = 4721
+[12/01/2016 13:11:30][                      ConnectToCompany()] Company connected  successfully SPICA_HL
+[12/01/2016 13:11:30][                  Add_Update_Documents()] Calling Function UpdateHoldingSO()
+[12/01/2016 13:11:30][                       UpdateHoldingSO()] Starting Function 
+[12/01/2016 13:11:30][                       UpdateHoldingSO()] Calling Function CopyDocument()
+[12/01/2016 13:11:30][                          CopyDocument()] Starting Function 
+[12/01/2016 13:11:30][                          CopyDocument()] 1
+[12/01/2016 13:11:30][                          CopyDocument()] 2
+[12/01/2016 13:11:30][                          CopyDocument()] Calling Function GetExchangeRate()
+[12/01/2016 13:11:30][                          CopyDocument()] 3
+[12/01/2016 13:11:30][                          CopyDocument()] 4
+[12/01/2016 13:11:30][                          CopyDocument()] Calling Function GetDocumentLine()
+[12/01/2016 13:11:30][                       GetDocumentLine()] Starting Function 
+[12/01/2016 13:11:30][                       GetDocumentLine()] select ItemCode, Dscription, Text, Quantity, PriceBefDi, DiscPrcnt, U_AE_SDateFr, U_AE_SDateTo, U_AE_Indv, U_AE_Hours from INV1 where DocEntry = 4721
+[12/01/2016 13:11:30][                       GetDocumentLine()] Completed Successfully  
+[12/01/2016 13:11:30][                          CopyDocument()] 4.5
+[12/01/2016 13:11:30][                       GetDocumentLine()] Error  Object reference not set to an instance of an object.
+[12/01/2016 13:11:30][                       UpdateHoldingSO()] Attempting to Add Holding SO 

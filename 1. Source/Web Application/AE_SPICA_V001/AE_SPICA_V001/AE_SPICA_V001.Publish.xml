@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="E:\Abeo Projects\SPICA_Publish" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="Images/loading.gif" publishTime="01/19/2016 13:52:44" />
+    <file relUrl="Resources/imgBackground.jpg" publishTime="09/24/2012 18:08:18" />
+    <file relUrl="ChangePassword.aspx" publishTime="03/18/2016 01:39:10" />
+    <file relUrl="Registration.aspx" publishTime="03/18/2016 15:42:47" />
+    <file relUrl="Resources/Styles.css" publishTime="03/11/2016 14:38:56" />
+    <file relUrl="ViewApprovedBillReport.aspx" publishTime="05/10/2016 00:37:38" />
+    <file relUrl="ExpenseEntry.aspx" publishTime="05/03/2016 15:21:54" />
+    <file relUrl="Site.Master" publishTime="06/01/2016 19:33:30" />
+    <file relUrl="lib/fonts/glyphicons-halflings-regulard41d.html" publishTime="01/12/2016 10:37:08" />
+    <file relUrl="ApprovedBillReport.aspx" publishTime="05/10/2016 00:39:40" />
+    <file relUrl="Scripts/jquery-1.4.1.js" publishTime="01/08/2016 12:09:44" />
+    <file relUrl="ViewDetailedBillReport.aspx" publishTime="05/10/2016 00:35:46" />
+    <file relUrl="Approval.aspx" publishTime="05/06/2016 16:38:29" />
+    <file relUrl="lib/fonts/montserrat-regular-webfont.html" publishTime="01/12/2016 10:37:11" />
+    <file relUrl="bin/AE_SPICA.DAL.dll" publishTime="06/06/2016 14:37:31" />
+    <file relUrl="lib/css/main.min.css" publishTime="05/02/2016 17:31:00" />
+    <file relUrl="bin/AE_SPICA.DAL.pdb" publishTime="06/06/2016 14:37:30" />
+    <file relUrl="Images/bgButton_disable.png" publishTime="06/05/2015 16:02:38" />
+    <file relUrl="lib/fonts/fontawesome-webfontd41d.html" publishTime="01/12/2016 10:37:08" />
+    <file relUrl="NoActiveFilesReport.aspx" publishTime="06/03/2016 16:21:28" />
+    <file relUrl="ViewNoActiveFilesReport.aspx" publishTime="06/01/2016 16:19:49" />
+    <file relUrl="bin/log4net.dll" publishTime="02/28/2013 22:45:10" />
+    <file relUrl="favicon.ico" publishTime="01/08/2016 15:10:14" />
+    <file relUrl="File.aspx" publishTime="06/01/2016 20:07:57" />
+    <file relUrl="ViewTimeEntryReport.aspx" publishTime="06/01/2016 16:08:57" />
+    <file relUrl="Images/SPICA Logo.png" publishTime="01/08/2016 13:57:21" />
+    <file relUrl="lib/fonts/glyphicons-halflings-regular.svg" publishTime="12/15/2014 21:37:38" />
+    <file relUrl="Images/SPICA Logo1.png" publishTime="01/08/2016 14:07:14" />
+    <file relUrl="Dashboard.aspx" publishTime="01/12/2016 15:12:46" />
+    <file relUrl="bin/AE_SPICA_V001.dll" publishTime="06/06/2016 14:45:44" />
+    <file relUrl="TimeEntry.aspx" publishTime="04/28/2016 02:39:13" />
+    <file relUrl="Images/avatar.jpg" publishTime="12/15/2014 21:37:38" />
+    <file relUrl="lib/fonts/glyphicons-halflings-regular.html" publishTime="01/12/2016 10:37:08" />
+    <file relUrl="lib/fonts/fontawesome-webfont862f.svg" publishTime="12/15/2014 21:37:38" />
+    <file relUrl="NotYetBillReport.aspx" publishTime="05/10/2016 00:46:31" />
+    <file relUrl="Resources/imgLoginBoxFade.png" publishTime="09/25/2012 01:31:10" />
+    <file relUrl="Scripts/jquery-1.4.1.min.js" publishTime="01/08/2016 12:09:44" />
+    <file relUrl="js/dashboard.min.js" publishTime="01/12/2016 16:44:46" />
+    <file relUrl="lib/fonts/fontawesome-webfont862f.html" publishTime="01/12/2016 10:37:08" />
+    <file relUrl="LoginSite.Master" publishTime="01/22/2016 13:38:46" />
+    <file relUrl="ViewNotYetBillReport.aspx" publishTime="05/10/2016 00:48:48" />
+    <file relUrl="Images/Calender.jpg" publishTime="01/20/2016 14:07:31" />
+    <file relUrl="lib/js/main.min.js" publishTime="01/12/2016 10:54:09" />
+    <file relUrl="lib/fonts/montserrat-regular-webfontd41d.html" publishTime="01/12/2016 10:37:11" />
+    <file relUrl="PreviewBilling.aspx" publishTime="05/06/2016 16:26:11" />
+    <file relUrl="lib/fonts/montserrat-regular-webfont.svg" publishTime="12/15/2014 21:37:38" />
+    <file relUrl="ClubMaster.aspx" publishTime="05/31/2016 15:48:20" />
+    <file relUrl="Login.aspx" publishTime="03/18/2016 01:53:31" />
+    <file relUrl="Images/bgButton.png" publishTime="03/09/2016 14:08:15" />
+    <file relUrl="Web.config" publishTime="05/04/2016 18:30:38" />
+    <file relUrl="DetailedBillReport.aspx" publishTime="05/09/2016 23:37:27" />
+    <file relUrl="Resources/logoGroupM.png" publishTime="09/24/2012 20:15:56" />
+    <file relUrl="bin/AE_SPICA_V001.pdb" publishTime="06/06/2016 14:45:44" />
+    <file relUrl="BillingRate.aspx" publishTime="03/22/2016 11:00:15" />
+    <file relUrl="TimEntryReport.aspx" publishTime="06/01/2016 15:46:57" />
+    <file relUrl="CSS/style.css" publishTime="05/02/2016 17:28:08" />
+    <file relUrl="ApprovalSetup.aspx" publishTime="02/01/2016 14:16:21" />
+    <file relUrl="bin/AjaxControlToolkit.dll" publishTime="06/05/2015 16:02:50" />
+    <file relUrl="Scripts/jquery-1.4.1-vsdoc.js" publishTime="01/08/2016 12:09:44" />
+  </publishProfile>
+</publishData>

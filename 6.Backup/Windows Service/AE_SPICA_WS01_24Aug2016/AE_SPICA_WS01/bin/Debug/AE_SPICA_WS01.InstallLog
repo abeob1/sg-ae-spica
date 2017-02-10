@@ -1,0 +1,13 @@
+﻿Installing assembly 'E:\Abeo-Projects\Abeo_Projects_WorkArea\SPICA\1. Source\Windows Services\AE_SPICA_WS01\AE_SPICA_WS01\bin\Debug\AE_SPICA_WS01.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Abeo-Projects\Abeo_Projects_WorkArea\SPICA\1. Source\Windows Services\AE_SPICA_WS01\AE_SPICA_WS01\bin\Debug\AE_SPICA_WS01.InstallLog
+   assemblypath = E:\Abeo-Projects\Abeo_Projects_WorkArea\SPICA\1. Source\Windows Services\AE_SPICA_WS01\AE_SPICA_WS01\bin\Debug\AE_SPICA_WS01.exe
+Installing service AE_PWC_EmailTrigger...
+Creating EventLog source AE_PWC_EmailTrigger in log Application...
+Rolling back assembly 'E:\Abeo-Projects\Abeo_Projects_WorkArea\SPICA\1. Source\Windows Services\AE_SPICA_WS01\AE_SPICA_WS01\bin\Debug\AE_SPICA_WS01.exe'.
+Affected parameters are:
+   logtoconsole = 
+   logfile = E:\Abeo-Projects\Abeo_Projects_WorkArea\SPICA\1. Source\Windows Services\AE_SPICA_WS01\AE_SPICA_WS01\bin\Debug\AE_SPICA_WS01.InstallLog
+   assemblypath = E:\Abeo-Projects\Abeo_Projects_WorkArea\SPICA\1. Source\Windows Services\AE_SPICA_WS01\AE_SPICA_WS01\bin\Debug\AE_SPICA_WS01.exe
+Restoring event log to previous state for source AE_PWC_EmailTrigger.

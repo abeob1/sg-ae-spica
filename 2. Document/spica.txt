@@ -1,0 +1,8 @@
+1) Create the Add-on in the VS Add-on installer (obj )
+2) Add-on Any CPU - > Configuration manager -> plat form "New" -> New platform "X86" -> Rebuild
+3) SDK AddOnRegDataGen -> Name similar to ARD name
+4) Add-on Executable path -> Source exe path (obj)
+5) Installer Exe PAth -> Installer exe path (x86\release)
+6) Estimated install time 180
+7) Uninstaller command line \x
+8) Source x86 -> EXE & BOBS, BOUI files

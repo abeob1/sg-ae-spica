@@ -1,0 +1,104 @@
+[11/29/2016 15:58:57][                      Onstop()] BP SYNC Service Stops  29-Nov-2016
+[11/29/2016 15:58:57][                      Onstop()] ----------------------------------------------------------------------
+[11/29/2016 15:59:15][                     Onstart()] Calling GetSystemIntializeInfo() 
+[11/29/2016 15:59:15][      GetSystemIntializeInfo()] Starting Function
+[11/29/2016 15:59:15][      GetSystemIntializeInfo()] Starting Function
+[11/29/2016 15:59:15][      GetSystemIntializeInfo()] Completed with SUCCESS
+[11/29/2016 15:59:15][                     Onstart()] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[11/29/2016 15:59:15][                     Onstart()] Calling Function ConnectToCompany()
+[11/29/2016 15:59:18][            ConnectToCompany()] Company connected  successfully SPICA_HL
+[11/29/2016 15:59:18][                     Onstart()] BP SYNC Service Starts  29-Nov-2016
+[11/29/2016 15:59:18][                     Onstart()] ----------------------------------------------------------------------
+[11/29/2016 15:59:18][                     Onstart()] Timer Activated  
+[11/29/2016 16:00:58][                      BPSYNC()] Starting Function Tuesday, November 29, 2016
+[11/29/2016 16:00:58][                      BPSYNC()] Branch Master SELECT T0.[Code], T0.[Name], T0.[U_AE_Connection] FROM [dbo].[@BRANCH_MASTER]  T0
+[11/29/2016 16:00:58][                      BPSYNC()] Calling ExecuteSQLQuery_DT() 
+[11/29/2016 16:00:58][      ExecExecuteSQLQuery_DT()] Starting Function...
+[11/29/2016 16:00:58][      ExecExecuteSQLQuery_DT()] Connection Details Data Source=WIN-D6KRARO05H9\SQLSERVER2012;Initial Catalog=SPICA_HL;User ID=sa; Password=Sa12345
+[11/29/2016 16:00:58][      ExecExecuteSQLQuery_DT()] Completed Successfully.
+[11/29/2016 16:00:58][                      BPSYNC()] BP SYNC SELECT Top(8)  T0.[Code], T0.[Name], T0.[U_BPCode] FROM [dbo].[@AB_BP_SYNC]  T0 WHERE T0.[U_Locked]  = 'N' and  ISNULL(T0.[U_Status],'') <> 'SUCCESS'
+[11/29/2016 16:00:58][                      BPSYNC()] Calling ExecuteSQLQuery_DT() 
+[11/29/2016 16:00:58][      ExecExecuteSQLQuery_DT()] Starting Function...
+[11/29/2016 16:00:58][      ExecExecuteSQLQuery_DT()] Connection Details Data Source=WIN-D6KRARO05H9\SQLSERVER2012;Initial Catalog=SPICA_HL;User ID=sa; Password=Sa12345
+[11/29/2016 16:00:58][      ExecExecuteSQLQuery_DT()] Completed Successfully.
+[11/29/2016 16:00:58][                      BPSYNC()] Locking the BP Code update [@AB_BP_SYNC]  set U_Locked = 'Y' where Code in ('2')
+[11/29/2016 16:00:58][                      BPSYNC()] Calling Function ConnectToCompany()
+[11/29/2016 16:00:59][            ConnectToCompany()] Company connected  successfully SPICAID
+[11/29/2016 16:00:59][                      BPSYNC()] Calling Function UpdateBPtoAllBranches()
+[11/29/2016 16:00:59][       UpdateBPtoAllBranches()] Starting Function
+[11/29/2016 16:00:59][       UpdateBPtoAllBranches()] Getting Contact Info select  ROW_NUMBER() OVER(ORDER BY T1.CntctCode ) -1 [No], T1.CntctCode , T1.Name , T1.Position  from ocpr t1  where T1.cardcode = 'C-Test' order by t1.CntctCode 
+[11/29/2016 16:00:59][       UpdateBPtoAllBranches()] Checking for BP Master C-Test
+[11/29/2016 16:00:59][       UpdateBPtoAllBranches()] Attempting to Update BP C-Test
+[11/29/2016 16:01:00][       UpdateBPtoAllBranches()] Attempting Contact Employees
+[11/29/2016 16:01:00][       UpdateBPtoAllBranches()] oBP.ContactEmployees.Name 
+[11/29/2016 16:01:00][       UpdateBPtoAllBranches()] Updating BP C-Test
+[11/29/2016 16:01:00][       UpdateBPtoAllBranches()] Updated BP Successfully
+[11/29/2016 16:01:00][                      BPSYNC()] Calling Function WriteToLogFile_Sync() - SUCCESS
+[11/29/2016 16:01:00][                      BPSYNC()] Updating the Status to SUCCESS ALL update [@AB_BP_SYNC]  set U_Locked = 'Y' where Code in ('2')
+[11/29/2016 16:01:00][                      BPSYNC()] Completed With SUCCESS 
+[11/29/2016 16:02:36][                      Onstop()] BP SYNC Service Stops  29-Nov-2016
+[11/29/2016 16:02:36][                      Onstop()] ----------------------------------------------------------------------
+[01/09/2017 10:52:25][                     Onstart()] Calling GetSystemIntializeInfo() 
+[01/09/2017 10:52:25][      GetSystemIntializeInfo()] Starting Function
+[01/09/2017 10:52:25][      GetSystemIntializeInfo()] Starting Function
+[01/09/2017 10:52:25][      GetSystemIntializeInfo()] Completed with SUCCESS
+[01/09/2017 10:52:25][                     Onstart()] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[01/09/2017 10:52:28][                     Onstart()] Calling Function ConnectToCompany()
+[01/09/2017 10:52:36][            ConnectToCompany()] Company not connected SPICA_HL - Unable to access SBO-Common database
+[01/09/2017 10:52:36][                     Onstart()] Completed With ERROR (OnStart)  Unable to access SBO-Common database
+[01/10/2017 15:01:17][                     Onstart()] Calling GetSystemIntializeInfo() 
+[01/10/2017 15:01:18][      GetSystemIntializeInfo()] Starting Function
+[01/10/2017 15:01:18][      GetSystemIntializeInfo()] Starting Function
+[01/10/2017 15:01:18][      GetSystemIntializeInfo()] Completed with SUCCESS
+[01/10/2017 15:01:18][                     Onstart()] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[01/10/2017 15:01:20][                     Onstart()] Calling Function ConnectToCompany()
+[01/10/2017 15:01:29][            ConnectToCompany()] Company not connected SPICA_HL - Unable to access SBO-Common database
+[01/10/2017 15:01:29][                     Onstart()] Completed With ERROR (OnStart)  Unable to access SBO-Common database
+[02/01/2017 16:02:03][                     Onstart()] Calling GetSystemIntializeInfo() 
+[02/01/2017 16:02:04][      GetSystemIntializeInfo()] Starting Function
+[02/01/2017 16:02:04][      GetSystemIntializeInfo()] Starting Function
+[02/01/2017 16:02:04][      GetSystemIntializeInfo()] Completed with SUCCESS
+[02/01/2017 16:02:04][                     Onstart()] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[02/01/2017 16:02:06][                     Onstart()] Calling Function ConnectToCompany()
+[02/01/2017 16:02:15][            ConnectToCompany()] Company not connected SPICA_HL - Unable to access SBO-Common database
+[02/01/2017 16:02:15][                     Onstart()] Completed With ERROR (OnStart)  Unable to access SBO-Common database
+[02/01/2017 16:42:06][                     Onstart()] Calling GetSystemIntializeInfo() 
+[02/01/2017 16:42:06][      GetSystemIntializeInfo()] Starting Function
+[02/01/2017 16:42:06][      GetSystemIntializeInfo()] Starting Function
+[02/01/2017 16:42:07][      GetSystemIntializeInfo()] Completed with SUCCESS
+[02/01/2017 16:42:07][                     Onstart()] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[02/01/2017 16:42:09][                     Onstart()] Calling Function ConnectToCompany()
+[02/01/2017 16:42:18][            ConnectToCompany()] Company not connected SPICA_HL - Unable to access SBO-Common database
+[02/01/2017 16:42:18][                     Onstart()] Completed With ERROR (OnStart)  Unable to access SBO-Common database
+[02/01/2017 16:59:16][                     Onstart()] Calling GetSystemIntializeInfo() 
+[02/01/2017 16:59:16][      GetSystemIntializeInfo()] Starting Function
+[02/01/2017 16:59:16][      GetSystemIntializeInfo()] Starting Function
+[02/01/2017 16:59:17][      GetSystemIntializeInfo()] Completed with SUCCESS
+[02/01/2017 16:59:17][                     Onstart()] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[02/01/2017 16:59:19][                     Onstart()] Calling Function ConnectToCompany()
+[02/01/2017 16:59:28][            ConnectToCompany()] Company not connected SPICA_HL - Unable to access SBO-Common database
+[02/01/2017 16:59:28][                     Onstart()] Completed With ERROR (OnStart)  Unable to access SBO-Common database
+[02/06/2017 23:11:13][                     Onstart()] Calling GetSystemIntializeInfo() 
+[02/06/2017 23:11:13][      GetSystemIntializeInfo()] Starting Function
+[02/06/2017 23:11:13][      GetSystemIntializeInfo()] Starting Function
+[02/06/2017 23:11:14][      GetSystemIntializeInfo()] Completed with SUCCESS
+[02/06/2017 23:11:14][                     Onstart()] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[02/06/2017 23:11:16][                     Onstart()] Calling Function ConnectToCompany()
+[02/06/2017 23:11:25][            ConnectToCompany()] Company not connected SPICA_HL - Unable to access SBO-Common database
+[02/06/2017 23:11:25][                     Onstart()] Completed With ERROR (OnStart)  Unable to access SBO-Common database
+[02/07/2017 09:47:36][                     Onstart()] Calling GetSystemIntializeInfo() 
+[02/07/2017 09:47:36][      GetSystemIntializeInfo()] Starting Function
+[02/07/2017 09:47:36][      GetSystemIntializeInfo()] Starting Function
+[02/07/2017 09:47:36][      GetSystemIntializeInfo()] Completed with SUCCESS
+[02/07/2017 09:47:36][                     Onstart()] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[02/07/2017 09:47:38][                     Onstart()] Calling Function ConnectToCompany()
+[02/07/2017 09:47:47][            ConnectToCompany()] Company not connected SPICA_HL - Unable to access SBO-Common database
+[02/07/2017 09:47:47][                     Onstart()] Completed With ERROR (OnStart)  Unable to access SBO-Common database
+[02/07/2017 09:54:16][                     Onstart()] Calling GetSystemIntializeInfo() 
+[02/07/2017 09:54:16][      GetSystemIntializeInfo()] Starting Function
+[02/07/2017 09:54:16][      GetSystemIntializeInfo()] Starting Function
+[02/07/2017 09:54:16][      GetSystemIntializeInfo()] Completed with SUCCESS
+[02/07/2017 09:54:16][                     Onstart()] Connection SPICA_HL;manager3;1234;WIN-D6KRARO05H9\SQLSERVER2012;sa;Sa12345;WIN-D6KRARO05H9:30000;2012
+[02/07/2017 09:54:18][                     Onstart()] Calling Function ConnectToCompany()
+[02/07/2017 09:54:27][            ConnectToCompany()] Company not connected SPICA_HL - Unable to access SBO-Common database
+[02/07/2017 09:54:27][                     Onstart()] Completed With ERROR (OnStart)  Unable to access SBO-Common database

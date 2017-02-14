@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Configuration;
 
 namespace AE_SPICA.DAL
 {
@@ -13,6 +14,9 @@ namespace AE_SPICA.DAL
         #region Objects
 
         public DataAccess oDataAccess = new DataAccess();
+        public string sDateFormat = ConfigurationManager.AppSettings["DateFormat"].ToString();
+        public string sSQLFormat = ConfigurationManager.AppSettings["SQLFormat"].ToString();
+        public string sDefaultDate = ConfigurationManager.AppSettings["DefaultDate"].ToString();
         public string sql = string.Empty;
         clsLog oLog = new clsLog();
         public string sResult = string.Empty;
@@ -56,9 +60,10 @@ namespace AE_SPICA.DAL
                 string sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 string billAmt = dt.Rows[0]["BillAmount"].ToString() == "" ? "0" : dt.Rows[0]["BillAmount"].ToString();
                 string sParameter = "'" + sDate + "'," +
-                            "'" + dt.Rows[0]["FileReference"].ToString() + "','" + dt.Rows[0]["Task"].ToString().Replace("'", "''") + "','" + dt.Rows[0]["Description"].ToString() + "'," +
+                            "'" + dt.Rows[0]["FileReference"].ToString() + "','" + dt.Rows[0]["Task"].ToString().Replace("'", "''") + "','" + dt.Rows[0]["Description"].ToString().Replace("'", "''") + "'," +
                             "'" + dt.Rows[0]["Duration"].ToString() + "','" + dt.Rows[0]["BillableUnit"].ToString() + "','" + billAmt + "'," +
-                            "'" + dt.Rows[0]["CompanyCode"].ToString() + "','" + dt.Rows[0]["UserCode"].ToString() + "','" + dt.Rows[0]["PrivateRemarks"].ToString() + "'";
+                            "'" + dt.Rows[0]["CompanyCode"].ToString() + "','" + dt.Rows[0]["UserCode"].ToString() + "','" + dt.Rows[0]["PrivateRemarks"].ToString() + "',"+
+                            "'" + dt.Rows[0]["ApprovalStatus"].ToString() + "'";
 
                 string sInsertQuery = "insert into tbl_TimeEntry(" + sColumnNames + ") values(" + sParameter + ")";
 
@@ -104,9 +109,11 @@ namespace AE_SPICA.DAL
                 }
 
                 string sUpdateQuery = "update tbl_TimeEntry set Date = '" + sDate + "'," +
-                                        "FileReference = '" + dt.Rows[0]["FileReference"].ToString() + "',Task = '" + dt.Rows[0]["Task"].ToString().Replace("'", "''") + "',Description = '" + dt.Rows[0]["Description"].ToString() + "'," +
+                                        "FileReference = '" + dt.Rows[0]["FileReference"].ToString() + "',Task = '" + dt.Rows[0]["Task"].ToString().Replace("'", "''") + "',Description = '" + dt.Rows[0]["Description"].ToString().Replace("'", "''") + "'," +
                                         "Duration = '" + dt.Rows[0]["Duration"].ToString() + "',BillableUnit = '" + dt.Rows[0]["BillableUnit"].ToString() + "',BillAmount = '" + dt.Rows[0]["BillAmount"].ToString() + "'," +
                                         "PrivateRemarks = '" + dt.Rows[0]["PrivateRemarks"].ToString() + "' Where Id = '" + dt.Rows[0]["Id"].ToString() + "'";
+
+                if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Update Query : " + sUpdateQuery, sFuncName);
 
                 SqlCommand cmd = new SqlCommand(sUpdateQuery, objsqlconn);
                 cmd.CommandType = CommandType.Text;
@@ -167,7 +174,7 @@ namespace AE_SPICA.DAL
                 sql = "Declare @RoleId varchar(10); set @RoleId =(select top 1 RoleId from tbl_Users where companycode = '" + sCompanyCode + "' AND UserCode = '" + sUserCode + "' order by RoleId) " +
        "If(@RoleId = 4)" +
        "BEGIN " +
-           "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(DATE, IncidentDate) = '1900-01-01' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, 120) END)" +
+           "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") = '" + sDefaultDate + "' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") END)" +
                     "[IncidentDate],Status,Description FROM tbl_FileReference where (ISNULL('" + sVessel + "','') = '' OR Vessel like '%" + sVessel + "%')" +
                     "AND (ISNULL('" + sClub + "','') = '' OR ClubID like '%" + sClub + "%')" +
                     "AND (ISNULL('" + sMember + "','') = '' OR Member like '%'" + sMember + "'%')" +
@@ -180,7 +187,7 @@ namespace AE_SPICA.DAL
         "END " +
         "ELSE if(@RoleId = 3) " +
         "BEGIN " +
-           "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(DATE, IncidentDate) = '1900-01-01' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, 120) END)" +
+           "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") = '" + sDefaultDate + "' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") END)" +
                     "[IncidentDate],Status,Description FROM tbl_FileReference where (ISNULL('" + sVessel + "','') = '' OR Vessel like '%" + sVessel + "%')" +
                     "AND (ISNULL('" + sClub + "','') = '' OR ClubID like '%" + sClub + "%')" +
                     "AND (ISNULL('" + sMember + "','') = '' OR Member like '%'" + sMember + "'%')" +
@@ -193,7 +200,7 @@ namespace AE_SPICA.DAL
         "END " +
         "ELSE " +
         "BEGIN " +
-           "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(DATE, IncidentDate) = '1900-01-01' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, 120) END)" +
+           "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") = '" + sDefaultDate + "' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") END)" +
                     "[IncidentDate],Status,Description FROM tbl_FileReference where (ISNULL('" + sVessel + "','') = '' OR Vessel like '%" + sVessel + "%')" +
                     "AND (ISNULL('" + sClub + "','') = '' OR ClubID like '%" + sClub + "%')" +
                     "AND (ISNULL('" + sMember + "','') = '' OR Member like '%'" + sMember + "'%')" +
@@ -218,13 +225,13 @@ namespace AE_SPICA.DAL
             return dsResult;
         }
 
-        public DataSet GetClubDetails()
+        public DataSet GetClubDetails(string sCompanyCode)
         {
             try
             {
                 sFuncName = "GetClubDetails()";
 
-                sql = "SELECT '-- Select --' Code, '-- Select --' Name UNION ALL  SELECT ClubCode [Code],ClubName[Name] from tbl_Club where IsNull(IsActive,'N') = 'Y'";
+                sql = "SELECT '-- Select --' Code, '-- Select --' Name UNION ALL  SELECT ClubCode [Code],ClubName[Name] from tbl_Club where CompanyCode = '" + sCompanyCode + "' and IsNull(IsActive,'N') = 'Y'";
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Calling ExecuteSqlString()", sFuncName);
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Query : " + sql, sFuncName);
                 dsResult = (DataSet)oDataAccess.ExecuteSqlString(sql);

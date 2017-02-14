@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using AE_SPICA.DAL;
 using System.Drawing;
 using System.Data;
+using System.Configuration;
 
 namespace AE_SPICA_V001
 {
@@ -16,6 +17,7 @@ namespace AE_SPICA_V001
         public string strSelect = "-- Select --";
         public clsTimeEntry oTimeEntry = new clsTimeEntry();
         public clsFileReference oFileReference = new clsFileReference();
+        public string sDateFormat = ConfigurationManager.AppSettings["DateFormat"].ToString();
         #endregion
 
         #region Methods
@@ -27,6 +29,7 @@ namespace AE_SPICA_V001
                 Response.Cookies[Constants.ScreenName].Value = "Time Entry";
                 if (!IsPostBack)
                 {
+                    Response.Cookies[Constants.Update].Value = string.Empty;
                     ViewState["Time"] = string.Empty;
                     ViewState["BillableUnit"] = string.Empty;
                     GetDropdownValues();
@@ -56,6 +59,7 @@ namespace AE_SPICA_V001
                     if (ds != null && ds.Tables[0].Rows.Count > 0)
                     {
                         ViewState["Records"] = ds.Tables[0];
+                        ViewState["FilteredRecords"] = ds.Tables[0];
                         grvTimeEntry.DataSource = ds.Tables[0];
                         grvTimeEntry.DataBind();
                     }
@@ -119,17 +123,30 @@ namespace AE_SPICA_V001
 
                 int index = grvSearch.SelectedRow.RowIndex;
                 string id = grvSearch.SelectedRow.Cells[0].Text;
-                if (grvSearch.SelectedRow.Cells[3].Text != "&nbsp;")
-                {
-                    txtTimeEntryDate.Text = grvSearch.SelectedRow.Cells[3].Text;
-                }
-                else
-                {
-                    txtTimeEntryDate.Text = string.Empty;
-                }
+                //if (grvSearch.SelectedRow.Cells[3].Text != "&nbsp;")
+                //{
+                //    txtTimeEntryDate.Text = grvSearch.SelectedRow.Cells[3].Text;
+                //}
+                //else
+                //{
+                //    txtTimeEntryDate.Text = string.Empty;
+                //}
+                lblId.Text = id.ToString();
+                txtTimeEntryDate.Text = DateTime.Now.Date.ToString(sDateFormat);
                 txtFileReference.Text = grvSearch.SelectedRow.Cells[1].Text;
 
                 //
+                if (ViewState["Records"] != null)
+                {
+                    DataTable tblRecords = (DataTable)ViewState["Records"];
+
+                    DataView dv1 = (DataView)tblRecords.DefaultView;
+                    dv1.RowFilter = "FileReference = '" + grvSearch.SelectedRow.Cells[1].Text + "'";
+                    DataTable dt1 = dv1.ToTable();
+                    ViewState["FilteredRecords"] = dt1;
+                    grvTimeEntry.DataSource = dt1;
+                    grvTimeEntry.DataBind();
+                }
             }
             catch (Exception ex)
             {
@@ -172,7 +189,7 @@ namespace AE_SPICA_V001
                 var var2 = this.grvTimeEntry.PageIndex;
                 this.grvTimeEntry.PageIndex = e.NewPageIndex;
 
-                DataTable tblRecords = (DataTable)ViewState["Records"];
+                DataTable tblRecords = (DataTable)ViewState["FilteredRecords"];
                 grvTimeEntry.DataSource = tblRecords;
                 grvTimeEntry.DataBind();
             }
@@ -187,7 +204,7 @@ namespace AE_SPICA_V001
         {
             try
             {
-                ClearFields();
+                //ClearFields();
                 Response.Cookies[Constants.IsUpdate].Expires = DateTime.Now;
                 lblerror.Text = string.Empty;
                 lblSuccess.Text = string.Empty;
@@ -292,6 +309,7 @@ namespace AE_SPICA_V001
                     if (ds != null && ds.Tables[0].Rows.Count > 0)
                     {
                         ViewState["Records"] = ds.Tables[0];
+                        ViewState["FilteredRecords"] = ds.Tables[0];
                         grvTimeEntry.DataSource = ds.Tables[0];
                         grvTimeEntry.DataBind();
                     }
@@ -312,6 +330,7 @@ namespace AE_SPICA_V001
                     if (ds != null && ds.Tables[0].Rows.Count > 0)
                     {
                         ViewState["Records"] = ds.Tables[0];
+                        ViewState["FilteredRecords"] = ds.Tables[0];
                         grvTimeEntry.DataSource = ds.Tables[0];
                         grvTimeEntry.DataBind();
                     }
@@ -340,6 +359,7 @@ namespace AE_SPICA_V001
                 lblerror.Text = string.Empty;
                 lblSuccess.Text = string.Empty;
                 ClearFields();
+                grvSearch.DataBind();
             }
             catch (Exception ex)
             {
@@ -412,6 +432,7 @@ namespace AE_SPICA_V001
                     if (ds != null && ds.Tables[0].Rows.Count > 0)
                     {
                         ViewState["Records"] = ds.Tables[0];
+                        ViewState["FilteredRecords"] = ds.Tables[0];
                         grvTimeEntry.DataSource = ds.Tables[0];
                         grvTimeEntry.DataBind();
                     }
@@ -520,7 +541,8 @@ namespace AE_SPICA_V001
 
         public void GetDropdownValues()
         {
-            ddlClubSearch.DataSource = oTimeEntry.GetClubDetails();
+            string sCompanyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
+            ddlClubSearch.DataSource = oTimeEntry.GetClubDetails(sCompanyCode);
             ddlClubSearch.DataTextField = "Name";
             ddlClubSearch.DataValueField = "Code";
             ddlClubSearch.DataBind();
@@ -548,6 +570,7 @@ namespace AE_SPICA_V001
                 dt.Columns.Add("CompanyCode");
                 dt.Columns.Add("UserCode");
                 dt.Columns.Add("PrivateRemarks");
+                dt.Columns.Add("ApprovalStatus");
 
                 dt.Rows.Add();
                 dt.Rows[0]["Id"] = lblId.Text;
@@ -569,6 +592,7 @@ namespace AE_SPICA_V001
                 dt.Rows[0]["CompanyCode"] = sCompanyCode;
                 dt.Rows[0]["UserCode"] = sUserCode;
                 dt.Rows[0]["PrivateRemarks"] = txtPrivateRemarks.Text;
+                dt.Rows[0]["ApprovalStatus"] = "NOT YET BILLED";
 
                 return dt;
             }
@@ -599,7 +623,7 @@ namespace AE_SPICA_V001
                 txtYearSearch.Text = string.Empty;
                 txtPrivateRemarks.Text = string.Empty;
 
-                grvSearch.DataBind();
+                //grvSearch.DataBind();
                 grvTimeEntry.DataBind();
                 btnSubmit.Enabled = false;
                 if (Response.Cookies[Constants.Update] != null)

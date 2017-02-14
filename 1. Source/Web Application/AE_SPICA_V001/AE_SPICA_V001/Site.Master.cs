@@ -34,12 +34,22 @@ namespace AE_SPICA_V001
                         leftMenuFiles.Visible = true;
                         leftMenuTE.Visible = true;
                         leftMenuEEntry.Visible = true;
-                        leftMenuApp.Visible = true;
+                        if (sRoleName == sRole1)
+                        {
+                            leftMenuApp.Visible = true;
+                            leftMenuSR.Visible = false;
+                        }
+                        else if (sRoleName == sRole2)
+                        {
+                            leftMenuApp.Visible = false;
+                            leftMenuSR.Visible = true;
+                        }
                         leftMenuReg.Visible = true;
                         leftMenuBR.Visible = true;
                         leftMenuCM.Visible = true;
                         leftMenuAS.Visible = true;
                         leftMenuRep.Visible = true;
+                        LeftMenuListing.Visible = true;
                         leftMenuChangePassword.Visible = false;
                         leftMenuLO.Visible = true;
                     }
@@ -54,6 +64,8 @@ namespace AE_SPICA_V001
                         leftMenuCM.Visible = true;
                         leftMenuAS.Visible = false;
                         leftMenuRep.Visible = true;
+                        leftMenuSR.Visible = false;
+                        LeftMenuListing.Visible = true;
                         leftMenuChangePassword.Visible = false;
                         leftMenuLO.Visible = true;
                     }
@@ -68,6 +80,8 @@ namespace AE_SPICA_V001
                         leftMenuCM.Visible = false;
                         leftMenuAS.Visible = false;
                         leftMenuRep.Visible = false;
+                        leftMenuSR.Visible = false;
+                        LeftMenuListing.Visible = true;
                         leftMenuChangePassword.Visible = true;
                         leftMenuLO.Visible = true;
                     }

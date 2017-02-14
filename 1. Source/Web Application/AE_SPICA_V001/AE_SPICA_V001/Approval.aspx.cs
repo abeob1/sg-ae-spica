@@ -81,7 +81,7 @@ namespace AE_SPICA_V001
                 GridViewRow grdrow = ((LinkButton)sender).NamingContainer as GridViewRow;
                 Label lblFileRef = (Label)grdrow.FindControl("lblSpicaRefNo");
                 Response.Cookies[Constants.FileRefNo].Value = lblFileRef.Text;
-                Response.Redirect("PreviewBilling.aspx", false);
+                Response.Redirect("PreviewBilling_Approval.aspx", false);
             }
             catch (Exception ex)
             {

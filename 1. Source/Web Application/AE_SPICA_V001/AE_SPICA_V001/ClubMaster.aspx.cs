@@ -34,7 +34,7 @@ namespace AE_SPICA_V001
                     grvSearch.DataBind();
                     string sSAPDBName = Convert.ToString(Request.Cookies[Constants.SAPDBName].Value);
                     DataSet ds = oClub.GetBPCode(sSAPDBName);
-                    ddlClubBP.DataSource = oClub.GetBPCode(sSAPDBName);
+                    ddlClubBP.DataSource = ds;
                     ddlClubBP.DataTextField = "Name";
                     ddlClubBP.DataValueField = "Code";
                     ddlClubBP.DataBind();
@@ -62,7 +62,8 @@ namespace AE_SPICA_V001
                 Response.Cookies[Constants.IsUpdate].Expires = DateTime.Now;
                 lblerror.Text = string.Empty;
                 lblSuccess.Text = string.Empty;
-                DataSet sResult = oClub.SearchClub(txtClubSearch.Text);
+                string sCmpyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
+                DataSet sResult = oClub.SearchClub(txtClubSearch.Text, sCmpyCode);
                 if (sResult != null && sResult.Tables[0].Rows.Count > 0)
                 {
                     ViewState["SearchResult"] = sResult.Tables[0];
@@ -118,7 +119,8 @@ namespace AE_SPICA_V001
                 string sResult = string.Empty;
                 if (Request.Cookies[Constants.Update].Value == string.Empty || Request.Cookies[Constants.Update].Value == "")
                 {
-                    sResult = oClub.CreateClub(dt);
+                    string sCmpyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
+                    sResult = oClub.CreateClub(dt, sCmpyCode);
                 }
                 else
                 {
@@ -313,17 +315,20 @@ namespace AE_SPICA_V001
         {
             try
             {
+                dt.Columns.Add("CompanyCode");
                 dt.Columns.Add("ClubCode");
                 dt.Columns.Add("ClubName");
                 dt.Columns.Add("Address");
                 dt.Columns.Add("ClubBP");
 
                 dt.Rows.Add();
+                string sCompanyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
+                dt.Rows[0]["CompanyCode"] = sCompanyCode;
                 dt.Rows[0]["ClubCode"] = txtClubCode.Text;
                 dt.Rows[0]["ClubName"] = txtClubName.Text;
                 dt.Rows[0]["Address"] = txtClubAddress.Text;
                 dt.Rows[0]["ClubBP"] = ddlClubBP.SelectedValue;
-
+                
                 return dt;
             }
             catch (Exception ex)

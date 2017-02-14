@@ -46,6 +46,30 @@
                                 </cc1:CalendarExtender>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label4" runat="server" Text="From Company"></asp:Label><span class="mandatory">*</span>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlFromCompany" runat="server" CssClass="form-control input-little">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label2" runat="server" Text="To Company"></asp:Label><span class="mandatory">*</span>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlToCompany" runat="server" CssClass="form-control input-little">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
                     </table>
                 </div>
                 <div class="col-lg-12">

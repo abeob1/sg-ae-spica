@@ -199,7 +199,7 @@
                                 <asp:TextBox ID="txtTimeEntryDate" runat="server" AutoPostBack="True" class="form-control input-little"
                                     MaxLength="10"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtTimeEntryDate"
-                                    PopupButtonID="Image1" Format="yyyy-MM-dd" CssClass=" cal_Theme1">
+                                    PopupButtonID="Image1" Format="<%$Appsettings:DateFormat%>" CssClass=" cal_Theme1">
                                 </cc1:CalendarExtender>
                                 <asp:Label ID="lblId" runat="server" Text="Id" Visible="false"></asp:Label>
                             </td>

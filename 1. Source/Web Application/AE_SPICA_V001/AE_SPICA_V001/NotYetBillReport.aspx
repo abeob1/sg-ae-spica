@@ -26,8 +26,7 @@
                                 :
                             </td>
                             <td>
-                                <asp:TextBox ID="txtFromDate" runat="server" class="form-control input-little"
-                                    MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="txtFromDate" runat="server" class="form-control input-little" MaxLength="10"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtFromDate"
                                     PopupButtonID="Image1" Format="yyyy-MM-dd" CssClass=" cal_Theme1">
                                 </cc1:CalendarExtender>
@@ -41,11 +40,34 @@
                                 :
                             </td>
                             <td>
-                                <asp:TextBox ID="txtToDate" runat="server" class="form-control input-little"
-                                    MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="txtToDate" runat="server" class="form-control input-little" MaxLength="10"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtToDate"
                                     PopupButtonID="Image1" Format="yyyy-MM-dd" CssClass=" cal_Theme1">
                                 </cc1:CalendarExtender>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label4" runat="server" Text="From Company"></asp:Label><span class="mandatory">*</span>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlFromCompany" runat="server" CssClass="form-control input-little">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label2" runat="server" Text="To Company"></asp:Label><span class="mandatory">*</span>
+                            </td>
+                            <td>
+                                :
+                            </td>
+                            <td>
+                                <asp:DropDownList ID="ddlToCompany" runat="server" CssClass="form-control input-little">
+                                </asp:DropDownList>
                             </td>
                         </tr>
                     </table>

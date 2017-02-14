@@ -137,6 +137,30 @@ namespace AE_SPICA.DAL
             return sResult;
         }
 
+        public DataSet GetCompanyBasedOnUserRole(string sRoleName, string sCompany)
+        {
+
+            try
+            {
+                sFuncName = "GetCompanyBasedOnUserRole()";
+                string sProcedureName = string.Empty;
+                sProcedureName = "EXEC [AE_SP012_GetCompanyBasedOnUserRole] '" + sRoleName + "','" + sCompany + "'";
+
+                if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Calling Run_StoredProcedure()", sFuncName);
+                if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Procedure : " + sProcedureName, sFuncName);
+                dsResult = (DataSet)oDataAccess.ExecuteSqlString(sProcedureName);
+                if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Completed with SUCCESS", sFuncName);
+            }
+            catch (Exception ex)
+            {
+                sErrDesc = ex.Message.ToString();
+                if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile(sErrDesc, sFuncName);
+                if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Completed With ERROR  ", sFuncName);
+                throw ex;
+            }
+            return dsResult;
+        }
+
         #endregion
     }
 }

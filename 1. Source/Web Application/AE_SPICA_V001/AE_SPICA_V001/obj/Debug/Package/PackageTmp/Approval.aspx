@@ -240,7 +240,7 @@
             <cc1:ModalPopupExtender ID="mpePopup" runat="server" TargetControlID="btnHiddenOpen"
                 PopupControlID="panShow">
             </cc1:ModalPopupExtender>
-            <asp:Panel ID="panShow" runat="server" Style="width: 900px; height: 600px; background-color: #F8F8F8;
+            <asp:Panel ID="panShow" runat="server" Style="width: 900px; height: 600px; background-color: #F8F8F8; overflow :scroll;
                 border: 2px solid #C8C8C8">
                 <asp:UpdatePanel runat="server" ID="updatepnl" UpdateMode="Conditional">
                     <ContentTemplate>
@@ -248,7 +248,7 @@
                             <div class="SpaceBox">
                             </div>
                         </div>
-                        <div class="col-lg-11 Maincontainer" style="overflow: auto;">
+                        <div class="col-lg-11 Maincontainer" style="overflow: scroll;">
                             TimeEntry
                             <asp:GridView ID="grvTimeEntry" runat="server" CssClass="table noborder table-bordered"
                                 AllowPaging="true" PageSize="100" AllowSorting="True" AutoGenerateColumns="False"
@@ -364,7 +364,7 @@
                             <div class="SpaceBox">
                             </div>
                         </div>
-                        <div class="col-lg-11 Maincontainer" style="overflow: auto;">
+                        <div class="col-lg-11 Maincontainer" style="overflow:scroll;">
                             Expense Entry
                             <asp:GridView ID="grvExpenseEntry" runat="server" CssClass="table noborder table-bordered"
                                 AllowPaging="true" PageSize="100" AllowSorting="True" AutoGenerateColumns="False"

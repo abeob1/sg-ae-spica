@@ -80,6 +80,7 @@
     <Content Include="CSS\style.css" />
     <Content Include="Dashboard.aspx" />
     <Content Include="DetailedBillReport.aspx" />
+    <Content Include="DueDTInvoiceReport.aspx" />
     <Content Include="ExpenseEntry.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="File.aspx" />
@@ -106,6 +107,8 @@
     <Content Include="NoActiveFilesReport.aspx" />
     <Content Include="NotYetBillReport.aspx" />
     <Content Include="PreviewBilling.aspx" />
+    <Content Include="PreviewBilling_Approval.aspx" />
+    <Content Include="PreviewHoldingInv.aspx" />
     <Content Include="Registration.aspx" />
     <Content Include="Resources\imgBackground.jpg" />
     <Content Include="Resources\imgLoginBoxFade.png" />
@@ -114,13 +117,17 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="StatusReport.aspx" />
     <Content Include="TimeEntry.aspx" />
     <Content Include="TimEntryReport.aspx" />
     <Content Include="ViewApprovedBillReport.aspx" />
     <Content Include="ViewDetailedBillReport.aspx" />
+    <Content Include="ViewDueDTInvoiceReport.aspx" />
     <Content Include="ViewNoActiveFilesReport.aspx" />
     <Content Include="ViewNotYetBillReport.aspx" />
+    <Content Include="ViewStatusReport.aspx" />
     <Content Include="ViewTimeEntryReport.aspx" />
+    <Content Include="ViewTimeSheetReport.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -189,6 +196,13 @@
     <Compile Include="DetailedBillReport.aspx.designer.cs">
       <DependentUpon>DetailedBillReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DueDTInvoiceReport.aspx.cs">
+      <DependentUpon>DueDTInvoiceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DueDTInvoiceReport.aspx.designer.cs">
+      <DependentUpon>DueDTInvoiceReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ExpenseEntry.aspx.cs">
       <DependentUpon>ExpenseEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -237,6 +251,20 @@
     </Compile>
     <Compile Include="PreviewBilling.aspx.designer.cs">
       <DependentUpon>PreviewBilling.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PreviewBilling_Approval.aspx.cs">
+      <DependentUpon>PreviewBilling_Approval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PreviewBilling_Approval.aspx.designer.cs">
+      <DependentUpon>PreviewBilling_Approval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PreviewHoldingInv.aspx.cs">
+      <DependentUpon>PreviewHoldingInv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PreviewHoldingInv.aspx.designer.cs">
+      <DependentUpon>PreviewHoldingInv.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration.aspx.cs">
@@ -308,6 +336,13 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Stats.cs" />
+    <Compile Include="StatusReport.aspx.cs">
+      <DependentUpon>StatusReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="StatusReport.aspx.designer.cs">
+      <DependentUpon>StatusReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="TimeEntry.aspx.cs">
       <DependentUpon>TimeEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -336,6 +371,13 @@
     <Compile Include="ViewDetailedBillReport.aspx.designer.cs">
       <DependentUpon>ViewDetailedBillReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewDueDTInvoiceReport.aspx.cs">
+      <DependentUpon>ViewDueDTInvoiceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewDueDTInvoiceReport.aspx.designer.cs">
+      <DependentUpon>ViewDueDTInvoiceReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewNoActiveFilesReport.aspx.cs">
       <DependentUpon>ViewNoActiveFilesReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -350,12 +392,26 @@
     <Compile Include="ViewNotYetBillReport.aspx.designer.cs">
       <DependentUpon>ViewNotYetBillReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewStatusReport.aspx.cs">
+      <DependentUpon>ViewStatusReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewStatusReport.aspx.designer.cs">
+      <DependentUpon>ViewStatusReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewTimeEntryReport.aspx.cs">
       <DependentUpon>ViewTimeEntryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewTimeEntryReport.aspx.designer.cs">
       <DependentUpon>ViewTimeEntryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewTimeSheetReport.aspx.cs">
+      <DependentUpon>ViewTimeSheetReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewTimeSheetReport.aspx.designer.cs">
+      <DependentUpon>ViewTimeSheetReport.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

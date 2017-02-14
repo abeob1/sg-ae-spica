@@ -17,6 +17,7 @@ namespace AE_SPICA_V001
         #region Objects
         public string strSelect = "-- Select --";
         public clsReports oReports = new clsReports();
+        public clsLogin oLogin = new clsLogin();
         #endregion
 
         #region Events
@@ -54,7 +55,10 @@ namespace AE_SPICA_V001
                 ddlToClaimHandler.DataValueField = "Code";
                 ddlToClaimHandler.DataBind();
 
-                DataSet dsCompany = oReports.GetCompany();
+                DataSet dsCompany = new DataSet();
+                string sRoleName = Request.Cookies[Constants.UserRoleName].Value.ToString();
+                string sCompanyCode = Request.Cookies[Constants.CompanyCode].Value.ToString();
+                dsCompany = oLogin.GetCompanyBasedOnUserRole(sRoleName, sCompanyCode);
                 ddlFromCompany.DataSource = dsCompany;
                 ddlFromCompany.DataTextField = "Name";
                 ddlFromCompany.DataValueField = "Code";
@@ -149,8 +153,8 @@ namespace AE_SPICA_V001
                 Response.Cookies[Constants.DBRToDate].Value = txtToDate.Text;
                 Response.Cookies[Constants.DBRFromClaim].Value = ddlFromClaimHandler.Text;
                 Response.Cookies[Constants.DBRToClaim].Value = ddlToClaimHandler.Text;
-                Response.Cookies[Constants.DBRFromComp].Value = ddlFromCompany.Text;
-                Response.Cookies[Constants.DBRToComp].Value = ddlToCompany.Text;
+                Response.Cookies[Constants.DBRFromComp].Value = ddlFromCompany.SelectedItem.ToString();
+                Response.Cookies[Constants.DBRToComp].Value = ddlToCompany.SelectedItem.ToString();
                 Response.Cookies[Constants.DBRStatus].Value = ddlStatus.Text;
 
                 Response.Redirect("ViewDetailedBillReport.aspx", false);

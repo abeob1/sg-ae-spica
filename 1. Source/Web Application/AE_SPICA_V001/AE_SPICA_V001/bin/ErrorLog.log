@@ -157,3 +157,19 @@ Unclosed quotation mark after the character string ''.
 Unclosed quotation mark after the character string ''.
 [06/06/2016 2:28:54 PM][                  UpdateClub()] Incorrect syntax near 's'.
 Unclosed quotation mark after the character string ''.
+[06/30/2016 10:25:01 AM][         UpdateFileReference()] Error converting data type varchar to bigint.
+[06/30/2016 3:40:21 PM][          GetNumberingSeries()] Incorrect syntax near 's'.
+[09/12/2016 12:00:03 PM][                  CreateClub()] Column name or number of supplied values does not match table definition.
+[09/12/2016 12:03:09 PM][                  CreateClub()] Cannot insert the value NULL into column 'IsActive', table 'SpicaTest2.dbo.tbl_NumberingSeries'; column does not allow nulls. INSERT fails.
+The statement has been terminated.
+[09/15/2016 6:22:13 PM][                  CreateClub()] String was not recognized as a valid DateTime.
+[09/15/2016 6:35:18 PM][                  CreateClub()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+[09/28/2016 3:03:28 PM][             UpdateTimeEntry()] Error converting data type varchar to bigint.
+[09/29/2016 5:40:17 PM][ GetInvBalanceandPaymentDate()] Incorrect syntax near the keyword 'Select'.
+Incorrect syntax near ')'.
+[09/29/2016 5:44:33 PM][             UpdateTimeEntry()] Error converting data type varchar to bigint.
+[11/25/2016 2:09:24 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.
+[11/25/2016 2:15:24 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.
+[11/25/2016 2:16:10 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.
+[11/25/2016 2:17:24 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.

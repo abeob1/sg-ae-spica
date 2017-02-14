@@ -14,6 +14,11 @@ namespace AE_SPICA_V001
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+        }
+
+        protected void Page_Init(object sender, EventArgs e)
+        {
             //string sFileRef = Convert.ToString(Request.Cookies[Constants.FileRefNo].Value);
             string connection = ConfigurationManager.ConnectionStrings["dbconnection"].ToString();
             string[] dbInfo = connection.Split(';');
@@ -89,5 +94,6 @@ namespace AE_SPICA_V001
 
             CrystalReportViewer1.ReportSource = myReportDocument;
         }
+
     }
 }

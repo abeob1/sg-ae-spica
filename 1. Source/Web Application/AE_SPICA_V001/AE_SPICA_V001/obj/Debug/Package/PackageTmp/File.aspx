@@ -11,6 +11,10 @@
         {
             width: 56%;
         }
+        .SAPTotal
+        {
+            color: Green;
+        }
         .style2
         {
             width: 162px;
@@ -199,7 +203,7 @@
                             <asp:TextBox ID="txtIncidentDate" runat="server" class="form-control input-little"
                                 MaxLength="10"></asp:TextBox>
                             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtIncidentDate"
-                                PopupButtonID="Image1" Format="yyyy-MM-dd" CssClass=" cal_Theme1">
+                                PopupButtonID="Image1" Format="<%$Appsettings:DateFormat%>" CssClass=" cal_Theme1">
                             </cc1:CalendarExtender>
                             <asp:Label ID="lblId" runat="server" Text="Id" Visible="false"></asp:Label>
                         </td>
@@ -363,6 +367,20 @@
                             <asp:TextBox ID="txtYear" runat="server" class="form-control input-little" MaxLength="4"></asp:TextBox>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label10" runat="server" Text="Close On"></asp:Label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtCloseOn" runat="server" class="form-control input-little" MaxLength="10"></asp:TextBox>
+                            <cc1:CalendarExtender ID="CalendarExtender4" runat="server" TargetControlID="txtCloseOn"
+                                PopupButtonID="Image1" Format="<%$Appsettings:DateFormat%>" CssClass=" cal_Theme1">
+                            </cc1:CalendarExtender>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <div class="col-lg-6">
@@ -504,10 +522,10 @@
                             :
                         </td>
                         <td>
-                            <asp:TextBox ID="txtPeriodDateFrom" runat="server" AutoPostBack="True" class="form-control input-little"
+                            <asp:TextBox ID="txtPeriodDateFrom" runat="server" AutoPostBack="false" class="form-control input-little"
                                 MaxLength="10"></asp:TextBox>
                             <cc1:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtPeriodDateFrom"
-                                PopupButtonID="Image1" Format="yyyy-MM-dd" CssClass=" cal_Theme1">
+                                PopupButtonID="Image1" Format="<%$Appsettings:DateFormat%>" CssClass=" cal_Theme1">
                             </cc1:CalendarExtender>
                         </td>
                     </tr>
@@ -519,10 +537,10 @@
                             :
                         </td>
                         <td>
-                            <asp:TextBox ID="txtPeriodDateTo" runat="server" AutoPostBack="True" class="form-control input-little"
+                            <asp:TextBox ID="txtPeriodDateTo" runat="server" AutoPostBack="false" class="form-control input-little"
                                 MaxLength="10"></asp:TextBox>
                             <cc1:CalendarExtender ID="CalendarExtender3" runat="server" TargetControlID="txtPeriodDateTo"
-                                PopupButtonID="Image1" Format="yyyy-MM-dd" CssClass=" cal_Theme1">
+                                PopupButtonID="Image1" Format="<%$Appsettings:DateFormat%>" CssClass=" cal_Theme1">
                             </cc1:CalendarExtender>
                         </td>
                     </tr>
@@ -536,6 +554,18 @@
                         <td>
                             <asp:TextBox ID="txtVoyageNumber" runat="server" class="form-control input-little"
                                 MaxLength="100"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label21" runat="server" Text="Location Store"></asp:Label>
+                        </td>
+                        <td>
+                            :
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtLocationStore" runat="server" class="form-control input-little"
+                                MaxLength="20"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
@@ -568,7 +598,7 @@
                     <PagerStyle Font-Bold="True" HorizontalAlign="Center" VerticalAlign="Middle" CssClass="pager-row myTableClass" />
                     <Columns>
                         <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" HeaderStyle-ForeColor="White"
-                            DataFormatString="{0:dd-M-yyyy}" HeaderStyle-VerticalAlign="Middle" />
+                            DataFormatString="<%$Appsettings:GridDateFormat%>" HeaderStyle-VerticalAlign="Middle" />
                         <asp:BoundField DataField="FileReference" HeaderText="File Reference" SortExpression="FileReference"
                             HeaderStyle-ForeColor="White" HeaderStyle-VerticalAlign="Middle" />
                         <asp:BoundField DataField="Task" HeaderText="Task" SortExpression="Task" HeaderStyle-ForeColor="White"
@@ -713,7 +743,7 @@
                     <PagerStyle Font-Bold="True" HorizontalAlign="Center" VerticalAlign="Middle" CssClass="pager-row myTableClass" />
                     <Columns>
                         <asp:BoundField DataField="Date" HeaderText="Date" SortExpression="Date" HeaderStyle-ForeColor="White"
-                            DataFormatString="{0:dd-M-yyyy}" HeaderStyle-VerticalAlign="Middle" />
+                            DataFormatString="<%$Appsettings:GridDateFormat%>" HeaderStyle-VerticalAlign="Middle" />
                         <asp:BoundField DataField="FileReference" HeaderText="File Reference" SortExpression="FileReference"
                             HeaderStyle-ForeColor="White" HeaderStyle-VerticalAlign="Middle" />
                         <asp:BoundField DataField="Expense" HeaderText="Expenses" SortExpression="Expense"
@@ -800,16 +830,79 @@
                                 <asp:Label ID="lblGrandTotal" runat="server" CssClass="Total"></asp:Label>
                             </td>
                         </tr>
+                        <tr style="height: 10px;">
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">
+                                Lump Sum :
+                            </td>
+                            <td style="width: 49%;">
+                                <asp:CheckBox ID="chkLumpSum" runat="server" Style="margin-left: 28px;"></asp:CheckBox>
+                            </td>
+                            <td style="width: 10%">
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr style="height: 10px;">
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 20%">
+                                Billing Details :
+                            </td>
+                            <td style="width: 49%">
+                                <asp:TextBox ID="txtBillingDetails" runat="server" class="form-control input-little"
+                                    MaxLength="150" TextMode="multiline" Columns="50" Height="80px" Width="517px"></asp:TextBox>
+                            </td>
+                            <td style="width: 10%">
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr style="height: 10px;">
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%">
+                        <tr>
+                            <td width="36%">
+                                Total amount billed at Holding level :
+                                <asp:Label ID="lblTotalInvAmount" runat="server" CssClass="SAPTotal" Font-Bold="true"></asp:Label>
+                            </td>
+                            <td width="19%">
+                                Balance :
+                                <asp:Label ID="lblBalance" runat="server" CssClass="SAPTotal" Font-Bold="true"></asp:Label>
+                            </td>
+                            <td width="25%">
+                                Last Payment Date :
+                                <asp:Label ID="lblLastPaymentDate" runat="server" CssClass="SAPTotal" Font-Bold="true"></asp:Label>
+                            </td>
+                            <td width="20%">
+                                Last Rec Num :
+                                <asp:Label ID="lblLastRecNum" runat="server" CssClass="SAPTotal" Font-Bold="true"></asp:Label>
+                            </td>
+                        </tr>
                     </table>
                 </div>
             </div>
             <div class="col-lg-12">
-                <div class="ScreenBtn">
+                <div class="ScreenBtn1">
                     <asp:Button ID="btnPreview" runat="server" Text="Preview Billing" class="action ScreenICEButton"
                         OnClick="btnPreview_Click" OnClientClick="document.forms[0].target ='_blank';" />
                     &nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="btnTimeSheet" runat="server" Text="Time Sheet" class="action ScreenICEButton"
+                        OnClick="btnTimeSheet_Click" OnClientClick="document.forms[0].target ='_blank';" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="btnApproval" runat="server" Text="Send to Approval" class="action ScreenICEButton"
                         OnClick="btnApproval_Click" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:Button ID="btnHoldingInv" runat="server" Text="Extract Holding Inv" class="action ScreenICEButton"
+                        OnClick="btnHoldingInv_Click" />
                 </div>
             </div>
             <%-- THis part of code is to display the Preview billing pop up--%>
@@ -853,7 +946,8 @@
                         <%--OnSorting="grvClub_Sorting" --%>
                         <asp:GridView ID="grvClub" runat="server" CssClass="table noborder table-bordered"
                             AllowPaging="true" PageSize="500" AllowSorting="True" AutoGenerateColumns="False"
-                            OnRowDataBound="grvClub_RowDataBound" OnSelectedIndexChanged="grvClub_SelectedIndexChanged">
+                            OnRowDataBound="grvClub_RowDataBound" OnSelectedIndexChanged="grvClub_SelectedIndexChanged"
+                            OnPageIndexChanging="grvClub_PageIndexChanging">
                             <PagerSettings Mode="NumericFirstLast" />
                             <PagerStyle Font-Bold="True" HorizontalAlign="Center" VerticalAlign="Middle" CssClass="pager-row myTableClass" />
                             <Columns>
@@ -899,6 +993,79 @@
                             <div class="ScreenBtn">
                                 <asp:Button ID="btnClose" runat="server" Text="Close" class="action ScreenICEButton"
                                     OnClick="btnClose_Click" />
+                            </div>
+                        </div>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </asp:Panel>
+            <%-- THis part of code is to display the Holding Invoice pop up--%>
+            <asp:Button ID="btnHiddenOpen2" runat="server" Style="display: none" />
+            <cc1:ModalPopupExtender ID="mpeHoldingInv" runat="server" TargetControlID="btnHiddenOpen2"
+                Enabled="True" DropShadow="true" DynamicServicePath="" PopupControlID="PrevHoldingInv">
+            </cc1:ModalPopupExtender>
+            <asp:Panel ID="PrevHoldingInv" runat="server" Style="width: 900px; height: 600px;
+                background-color: #F8F8F8; border: 2px solid #C8C8C8; overflow: scroll;">
+                <asp:UpdatePanel runat="server" ID="UpdatePanel2" UpdateMode="Always">
+                    <ContentTemplate>
+                        <%--OnSorting="grvClub_Sorting" --%>
+                        <asp:GridView ID="grvHoldingInv" runat="server" CssClass="table noborder table-bordered"
+                            AllowPaging="true" PageSize="10" AllowSorting="True" AutoGenerateColumns="False"
+                            OnRowDataBound="grvHoldingInv_RowDataBound" OnSelectedIndexChanged="grvHoldingInv_SelectedIndexChanged"
+                            OnPageIndexChanging="grvHoldingInv_PageIndexChanging">
+                            <PagerSettings Mode="NumericFirstLast" />
+                            <PagerStyle Font-Bold="True" HorizontalAlign="Center" VerticalAlign="Middle" CssClass="pager-row myTableClass" />
+                            <Columns>
+                                <asp:BoundField DataField="Type" HeaderText="Type" SortExpression="Type" HeaderStyle-ForeColor="White"
+                                    HeaderStyle-VerticalAlign="Middle" />
+                                <asp:BoundField DataField="OurRef" HeaderText="OurRef" SortExpression="OurRef" HeaderStyle-ForeColor="White"
+                                    HeaderStyle-VerticalAlign="Middle" />
+                                <asp:BoundField DataField="DocEntry" HeaderText="DocEntry" SortExpression="DocEntry"
+                                    HeaderStyle-ForeColor="White" HeaderStyle-VerticalAlign="Middle" />
+                                <asp:BoundField DataField="DocNum" HeaderText="DocNum" SortExpression="DocNum" HeaderStyle-ForeColor="White"
+                                    HeaderStyle-VerticalAlign="Middle" />
+                                <asp:BoundField DataField="DocDate" HeaderText="DocDate" SortExpression="DocDate"
+                                    HeaderStyle-ForeColor="White" HeaderStyle-VerticalAlign="Middle" />
+                                <asp:BoundField DataField="Cancelled" HeaderText="Cancelled" SortExpression="Cancelled"
+                                    HeaderStyle-ForeColor="White" HeaderStyle-VerticalAlign="Middle" />
+                            </Columns>
+                            <EmptyDataTemplate>
+                                <table class="table noborder table-bordered">
+                                    <tr valign="middle">
+                                        <th>
+                                            <span>Type</span>
+                                        </th>
+                                        <th>
+                                            <span>OurRef</span>
+                                        </th>
+                                        <th>
+                                            <span>DocEntry</span>
+                                        </th>
+                                        <th>
+                                            <span>DocNum</span>
+                                        </th>
+                                        <th>
+                                            <span>DocDate</span>
+                                        </th>
+                                        <th>
+                                            <span>Cancelled</span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">
+                                            <span>No Data</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </EmptyDataTemplate>
+                        </asp:GridView>
+                        <div class="col-lg-12">
+                            <div class="ScreenBtn">
+                                <asp:Button ID="btnHoldingInvPreview" runat="server" Text="Preview" class="action ScreenICEButton"
+                                    OnClick="btnHoldingInvPreview_Click" />
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <asp:Button ID="btnHoldingInvClose" runat="server" Text="Close" class="action ScreenICEButton"
+                                    OnClick="btnHoldingInvClose_Click" />
                             </div>
                         </div>
                         </div>

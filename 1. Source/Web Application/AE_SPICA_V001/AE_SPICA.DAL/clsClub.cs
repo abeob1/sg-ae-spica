@@ -53,16 +53,16 @@ namespace AE_SPICA.DAL
             return dsResult;
         }
 
-        public string CreateClub(DataTable dt)
+        public string CreateClub(DataTable dt, string sCmpyCode)
         {
             try
             {
                 sFuncName = "CreateClub()";
-
+                DateTime dtDateTime = new DateTime();
                 string sColumnNames = oGenSQL.BuildAllFieldsSQL(dt);
                 SqlConnection objsqlconn = new SqlConnection(oDataAccess.connection);
 
-                sql = "SELECT * from tbl_Club where ClubCode = '" + dt.Rows[0]["ClubCode"].ToString() + "'";
+                sql = "SELECT * from tbl_Club where ClubCode = '" + dt.Rows[0]["ClubCode"].ToString() + "' and CompanyCode = '" + dt.Rows[0]["CompanyCode"].ToString() + "'";
                 dsResult = (DataSet)oDataAccess.ExecuteSqlString(sql);
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Calling ExecuteSqlString()", sFuncName);
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Query : " + sql, sFuncName);
@@ -71,11 +71,11 @@ namespace AE_SPICA.DAL
                 {
                     if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Calling ExecuteSqlString()", sFuncName);
                     if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Query : " + sql, sFuncName);
-                    sql = "SELECT * from tbl_Club where ClubName = '" + dt.Rows[0]["ClubName"].ToString().Replace("'", "''") + "'";
+                    sql = "SELECT * from tbl_Club where ClubName = '" + dt.Rows[0]["ClubName"].ToString().Replace("'", "''") + "' and CompanyCode = '" + dt.Rows[0]["CompanyCode"].ToString() + "'";
                     DataSet ds1 = (DataSet)oDataAccess.ExecuteSqlString(sql);
                     if (ds1 != null && ds1.Tables[0].Rows.Count == 0)
                     {
-                        string sParameter = "'" + dt.Rows[0]["ClubCode"].ToString() + "'," +
+                        string sParameter = "'" + dt.Rows[0]["CompanyCode"].ToString() + "','" + dt.Rows[0]["ClubCode"].ToString() + "'," +
                         "'" + dt.Rows[0]["ClubName"].ToString().Replace("'", "''") + "','" + dt.Rows[0]["Address"].ToString().Replace("'", "''") + "','" + dt.Rows[0]["ClubBP"].ToString() + "'";
 
                         string sInsertQuery = "insert into tbl_Club(" + sColumnNames + ") values(" + sParameter + ")";
@@ -86,6 +86,29 @@ namespace AE_SPICA.DAL
                         cmd.ExecuteNonQuery();
                         objsqlconn.Close();
                         sResult = "INSERT";
+                        if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Before Inserting the Records in Numbering Series Table", sFuncName);
+                        if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Date Time Month : " + DateTime.Now.Month, sFuncName);
+                        if (DateTime.Now.Month <= 2)
+                        {
+                            string sDate = 02 + "/" + 19 + "/" + DateTime.Now.Year;
+                            string[] format = { "dd/MM/yyyy", "d/M/yyyy", "dd-MM-yyyy", "dd.MM.yyyy", "yyyyMMdd", "MMddYYYY", "M/dd/yyyy", "MM/dd/YYYY" };
+                            System.DateTime.TryParseExact(sDate, format, System.Globalization.DateTimeFormatInfo.InvariantInfo, System.Globalization.DateTimeStyles.None, out dtDateTime);
+                        }
+                        else
+                        {
+                            string sDate = 02 + "/" + 19 + "/" + DateTime.Now.Date.AddYears(1).Year;
+                            string[] format = {"dd/MM/yyyy","d/M/yyyy", "dd-MM-yyyy","dd.MM.yyyy","yyyyMMdd", "MMddYYYY","M/dd/yyyy", "MM/dd/YYYY" };
+                            System.DateTime.TryParseExact(sDate, format, System.Globalization.DateTimeFormatInfo.InvariantInfo, System.Globalization.DateTimeStyles.None, out dtDateTime);
+                        }
+                        string sQuery = "insert into tbl_NumberingSeries (No,Year,CompanyCode,ClubCode,IsActive) values('001','" + dtDateTime.Date.ToString("yyyy-MM-dd") + "','" + sCmpyCode + "','" + dt.Rows[0]["ClubCode"].ToString() + "','1')";
+                        if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Query:" + sQuery, sFuncName);
+
+                        SqlCommand cmd1 = new SqlCommand(sQuery, objsqlconn);
+                        cmd1.CommandType = CommandType.Text;
+                        objsqlconn.Open();
+                        cmd1.ExecuteNonQuery();
+                        objsqlconn.Close();
+                        if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("After Inserting the Records in Numbering Series Table", sFuncName);
                         if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Completed with SUCCESS", sFuncName);
                     }
                     else
@@ -108,7 +131,7 @@ namespace AE_SPICA.DAL
             }
         }
 
-        public DataSet SearchClub(string sClubName)
+        public DataSet SearchClub(string sClubName, string sCompany)
         {
             try
             {
@@ -116,11 +139,11 @@ namespace AE_SPICA.DAL
 
                 if (sClubName == string.Empty)
                 {
-                    sql = "SELECT * FROM tbl_Club";
+                    sql = "SELECT * FROM tbl_Club where CompanyCode = '" + sCompany + "'";
                 }
                 else
                 {
-                    sql = "SELECT * FROM tbl_Club WHERE ClubName like '%" + sClubName.Replace("'", "''") + "%'";
+                    sql = "SELECT * FROM tbl_Club WHERE ClubName like '%" + sClubName.Replace("'", "''") + "%' and  CompanyCode = '" + sCompany + "'";
                 }
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Calling ExecuteSqlString()", sFuncName);
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Query : " + sql, sFuncName);
@@ -143,7 +166,7 @@ namespace AE_SPICA.DAL
                 sFuncName = "UpdateClub()";
 
                 string sUpdateQuery = "Update tbl_Club SET ClubName = '" + dt.Rows[0]["ClubName"].ToString().Replace("'", "''") + "' ,Address = '" + dt.Rows[0]["Address"].ToString().Replace("'", "''") + "', ClubBP = '" + dt.Rows[0]["ClubBP"].ToString() + "'" +
-                    " where ClubCode = '" + dt.Rows[0]["ClubCode"].ToString() + "'";
+                    " where ClubCode = '" + dt.Rows[0]["ClubCode"].ToString() + "' and CompanyCode = '" + dt.Rows[0]["CompanyCode"].ToString() + "'";
 
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Calling ExecuteSqlString()", sFuncName);
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Query : " + sUpdateQuery, sFuncName);
@@ -196,7 +219,8 @@ namespace AE_SPICA.DAL
             {
                 sFuncName = "GetBPDetails()";
 
-                sql = "SELECT rank() OVER (ORDER BY CardCode) Id,Country, City ,CardCode [Code],CardName [Name] from OCRD with (nolock) order by Code asc";
+                //sql = "SELECT rank() OVER (ORDER BY CardCode) Id,Country, City ,CardCode [Code],CardName [Name] from OCRD with (nolock) order by Code asc";
+                sql = "SELECT rank() OVER (ORDER BY CardCode) Id,T1.Name Country, City ,CardCode [Code],CardName [Name] from OCRD T0 with (nolock) Left Join OCRY T1 ON T1.Code = T0.Country order by T0.CardCode asc";
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Calling ExecuteSqlString()", sFuncName);
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Query : " + sql, sFuncName);
                 dsResult = (DataSet)oDataAccess.Run_QueryString(sql, sSAPDBName);

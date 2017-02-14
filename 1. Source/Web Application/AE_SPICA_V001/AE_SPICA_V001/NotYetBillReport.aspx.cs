@@ -17,6 +17,7 @@ namespace AE_SPICA_V001
         #region Objects
         public string strSelect = "-- Select --";
         public clsReports oReports = new clsReports();
+        public clsLogin oLogin = new clsLogin();
         #endregion
 
         #region Events
@@ -28,6 +29,18 @@ namespace AE_SPICA_V001
                 if (!IsPostBack)
                 {
                     ClearFields();
+                    DataSet ds = new DataSet();
+                    string sRoleName = Request.Cookies[Constants.UserRoleName].Value.ToString();
+                    string sCompanyCode = Request.Cookies[Constants.CompanyCode].Value.ToString();
+                    ds = oLogin.GetCompanyBasedOnUserRole(sRoleName, sCompanyCode);
+                    ddlFromCompany.DataSource = ds;
+                    ddlFromCompany.DataTextField = "Name";
+                    ddlFromCompany.DataValueField = "Code";
+                    ddlFromCompany.DataBind();
+                    ddlToCompany.DataSource = ds;
+                    ddlToCompany.DataTextField = "Name";
+                    ddlToCompany.DataValueField = "Code";
+                    ddlToCompany.DataBind();
                 }
             }
             catch (Exception ex)
@@ -68,8 +81,23 @@ namespace AE_SPICA_V001
                     }
                 }
 
+                if (ddlFromCompany.Text.ToString() == strSelect.ToString())
+                {
+                    lblerror.Visible = true;
+                    lblerror.Text = "Kindly Select From Company";
+                    return;
+                }
+                if (ddlToCompany.Text.ToString() == strSelect.ToString())
+                {
+                    lblerror.Visible = true;
+                    lblerror.Text = "Kindly Select To Company";
+                    return;
+                }
+
                 Response.Cookies[Constants.NYBRFromDate].Value = txtFromDate.Text;
                 Response.Cookies[Constants.NYBRToDate].Value = txtToDate.Text;
+                Response.Cookies[Constants.NYBRFromCompany].Value = ddlFromCompany.SelectedItem.ToString();
+                Response.Cookies[Constants.NYBRToCompany].Value = ddlToCompany.SelectedItem.ToString();
                 Response.Redirect("ViewNotYetBillReport.aspx", false);
 
                 //loadReport(txtFromDate.Text, txtToDate.Text);
@@ -101,6 +129,8 @@ namespace AE_SPICA_V001
             txtToDate.Text = string.Empty;
             lblerror.Text = string.Empty;
             lblSuccess.Text = string.Empty;
+            ddlFromCompany.SelectedIndex = 0;
+            ddlToCompany.SelectedIndex = 0;
             //loadReport(string.Empty, string.Empty);
         }
 

@@ -32,10 +32,12 @@ namespace AE_SPICA_V001
                     ddlFilterBy.Items.Insert(2, new ListItem("ClaimHandler", "ClaimHandler"));
                     ddlFilterBy.SelectedIndex = 0;
 
-                    DataSet ds = oLogin.GetCompanyDetails();
+                    string sRoleName = Request.Cookies[Constants.UserRoleName].Value.ToString();
+                    string sCompanyCode = Request.Cookies[Constants.CompanyCode].Value.ToString();
+                    DataSet ds = oLogin.GetCompanyBasedOnUserRole(sRoleName, sCompanyCode);
                     ddlBranch.DataSource = ds;
                     ddlBranch.DataTextField = "Name";
-                    ddlBranch.DataValueField = "Name";
+                    ddlBranch.DataValueField = "Code";
                     ddlBranch.DataBind();
 
                     DataSet dsClaimHandler = oReports.GetClaimHandler();
@@ -105,7 +107,7 @@ namespace AE_SPICA_V001
                 Response.Cookies[Constants.NAFRFromDate].Value = txtFromDate.Text;
                 Response.Cookies[Constants.NAFRToDate].Value = txtToDate.Text;
                 Response.Cookies[Constants.NAFRFilterBy].Value = ddlFilterBy.SelectedValue;
-                Response.Cookies[Constants.NAFRBranch].Value = ddlBranch.SelectedValue;
+                Response.Cookies[Constants.NAFRBranch].Value = ddlBranch.SelectedItem.ToString();
                 Response.Cookies[Constants.NAFRClaimHandler].Value = ddlClaimHandler.SelectedValue;
 
 

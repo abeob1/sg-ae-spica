@@ -41,6 +41,10 @@ namespace AE_SPICA_V001
 
         public const string ABRToDate = "ABRToDate";
 
+        public const string ABRFromCompany = "ABRFromCompany";
+
+        public const string ABRToCompany = "ABRToCompany";
+
         public const string DBRFromDate = "DBRFromDate";
 
         public const string DBRToDate = "DBRToDate";
@@ -59,9 +63,17 @@ namespace AE_SPICA_V001
 
         public const string NYBRToDate = "NYBRToDate";
 
+        public const string NYBRFromCompany = "NYBRFromCompany";
+
+        public const string NYBRToCompany = "NYBRToCompany";
+
         public const string TERFromDate = "TERFromDate";
 
         public const string TERToDate = "TERToDate";
+
+        public const string TERFromCompany = "TERFromCompany";
+
+        public const string TERToCompany = "TERToCompany";
 
         public const string NAFRFromDate = "NAFRFromDate";
 
@@ -72,5 +84,31 @@ namespace AE_SPICA_V001
         public const string NAFRBranch = "NAFRBranch";
 
         public const string NAFRClaimHandler = "NAFRClaimHandler";
+
+        public const string DDIRFromDate = "DDIRFromDate";
+
+        public const string DDIRToDate = "DDIRToDate";
+
+        public const string DDIRFromCompany = "DDIRFromCompany";
+
+        public const string DDIRToCompany = "DDIRToCompany";
+
+        public const string SRFromIncidentDate = "SRFromIncidentDate";
+
+        public const string SRToIncidentDate = "SRToIncidentDate";
+
+        public const string SRFromPeriodDate = "SRFromPeriodDate";
+
+        public const string SRToPeriodDate = "SRToPeriodDate";
+
+        public const string SRFromCH = "SRFromCH";
+
+        public const string SRToCH = "SRToCH";
+
+        public const string SRStatus = "SRStatus";
+
+        public const string HoldingInvDocEntry = "HoldingInvDocEntry";
+
+        public const string HoldingInvType = "HoldingInvType";
     }
 }

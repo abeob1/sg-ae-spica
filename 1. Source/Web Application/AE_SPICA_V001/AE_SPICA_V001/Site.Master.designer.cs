@@ -112,6 +112,15 @@ namespace AE_SPICA_V001 {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl leftMenuAS;
         
         /// <summary>
+        /// LeftMenuListing control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl LeftMenuListing;
+        
+        /// <summary>
         /// leftMenuRep control.
         /// </summary>
         /// <remarks>
@@ -119,6 +128,15 @@ namespace AE_SPICA_V001 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl leftMenuRep;
+        
+        /// <summary>
+        /// leftMenuSR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl leftMenuSR;
         
         /// <summary>
         /// leftMenuChangePassword control.

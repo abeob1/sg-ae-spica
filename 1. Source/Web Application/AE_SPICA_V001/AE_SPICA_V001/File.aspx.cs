@@ -19,6 +19,9 @@ namespace AE_SPICA_V001
         public string strSelect = "-- Select --";
         public clsFileReference oFileReference = new clsFileReference();
         public clsClub oClub = new clsClub();
+        public string sDateFormat = ConfigurationManager.AppSettings["DateFormat"].ToString();
+        public string sDefaultDate = ConfigurationManager.AppSettings["DefaultDate"].ToString();
+        public string sSQLFormat = ConfigurationManager.AppSettings["SQLFormat"].ToString();
         #endregion
 
         #region Events
@@ -40,6 +43,18 @@ namespace AE_SPICA_V001
                     btnPreview.Enabled = false;
                     btnPreview.Style["background-image"] = "url('Images/bgButton_disable.png')";
                     btnPreview.Attributes.Add("class", "ScreenICEButton disabled");
+                    btnHoldingInv.Enabled = false;
+                    btnHoldingInv.Style["background-image"] = "url('Images/bgButton_disable.png')";
+                    btnHoldingInv.Attributes.Add("class", "ScreenICEButton disabled");
+
+                    btnTimeSheet.Enabled = true;
+                    btnTimeSheet.Style["background-image"] = "url('Images/bgButton_disable.png')";
+                    btnTimeSheet.Attributes.Add("class", "ScreenICEButton disabled");
+
+                    if (Response.Cookies[Constants.Update] != null)
+                    {
+                        Response.Cookies[Constants.Update].Value = string.Empty;
+                    }
                 }
             }
             catch (Exception ex)
@@ -126,6 +141,7 @@ namespace AE_SPICA_V001
                         txtClubBP.Text = ds.Tables[0].Rows[0]["ClubBP"].ToString();
                         string sSAPDBName = Convert.ToString(Request.Cookies[Constants.SAPDBName].Value);
                         GetClubBPContact(txtClubBP.Text.ToString());
+                        ddlClubBPContact.Text = ds.Tables[0].Rows[0]["ClubBPContact"].ToString();
                     }
                     else
                     {
@@ -157,6 +173,8 @@ namespace AE_SPICA_V001
                     txtPeriodDateTo.Text = ds.Tables[0].Rows[0]["ConvPeriodDateTo"].ToString();
                     //ddlStatus.SelectedValue = ds.Tables[0].Rows[0]["Status"].ToString();
                     txtVoyageNumber.Text = ds.Tables[0].Rows[0]["VoyageNumber"].ToString();
+                    txtCloseOn.Text = ds.Tables[0].Rows[0]["ConvCloseOn"].ToString();
+                    txtLocationStore.Text = ds.Tables[0].Rows[0]["LocationStore"].ToString();
                     if (ds.Tables[0].Rows[0]["Status"].ToString() != null && ds.Tables[0].Rows[0]["Status"].ToString() != string.Empty)
                     {
                         ddlTypeofBill.SelectedValue = ds.Tables[0].Rows[0]["Status"].ToString();
@@ -166,11 +184,68 @@ namespace AE_SPICA_V001
                         ddlTypeofBill.SelectedValue = strSelect.ToString();
                     }
 
+                    if (ds.Tables[0].Rows[0]["LumpSum"].ToString() != null && ds.Tables[0].Rows[0]["LumpSum"].ToString() != string.Empty)
+                    {
+                        if (ds.Tables[0].Rows[0]["LumpSum"].ToString() == "Y")
+                        {
+                            chkLumpSum.Checked = true;
+                        }
+                        else
+                        {
+                            chkLumpSum.Checked = false;
+                        }
+                    }
+                    else
+                    {
+                        chkLumpSum.Checked = false;
+                    }
+                    txtBillingDetails.Text = ds.Tables[0].Rows[0]["BillingDetails"].ToString();
+
                     LoadTimeandExpenseEntryDetails(ds.Tables[0].Rows[0]["FileReferenceNo"].ToString());
 
                     Response.Cookies[Constants.FileRefNo].Value = ds.Tables[0].Rows[0]["FileReferenceNo"].ToString();
+
+                    //For Fetching the data from SAP OINV table and update it in Web database
+                    string sCmpyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
+                    DataSet dsBalance = oFileReference.GetInvBalanceandPaymentDate(sCmpyCode, ds.Tables[0].Rows[0]["FileReferenceNo"].ToString());
+                    if (dsBalance != null && ds.Tables.Count != 0)
+                    {
+                        if (dsBalance.Tables[0].Rows.Count > 0)
+                        {
+                            lblTotalInvAmount.Text = dsBalance.Tables[0].Rows[0]["TotalInvAmt"].ToString();
+                            lblBalance.Text = dsBalance.Tables[0].Rows[0]["Balance"].ToString();
+                            lblLastRecNum.Text = dsBalance.Tables[0].Rows[0]["LastRecNum"].ToString();
+                            if (dsBalance.Tables[0].Rows[0]["LastPaymentDate"].ToString() != string.Empty || dsBalance.Tables[0].Rows[0]["LastPaymentDate"].ToString() != null)
+                            {
+                                lblLastPaymentDate.Text = Convert.ToDateTime(dsBalance.Tables[0].Rows[0]["LastPaymentDate"]).ToString(sDateFormat);
+                                if (lblLastPaymentDate.Text == sDefaultDate)
+                                {
+                                    lblLastPaymentDate.Text = string.Empty;
+                                }
+                            }
+                            else
+                            {
+                                lblLastPaymentDate.Text = string.Empty;
+                            }
+                        }
+                        else
+                        {
+                            lblTotalInvAmount.Text = string.Empty;
+                            lblBalance.Text = string.Empty;
+                            lblLastPaymentDate.Text = string.Empty;
+                            lblLastRecNum.Text = string.Empty;
+                        }
+                    }
+                    else
+                    {
+                        lblTotalInvAmount.Text = string.Empty;
+                        lblBalance.Text = string.Empty;
+                        lblLastPaymentDate.Text = string.Empty;
+                    }
                 }
             }
+
+
 
             Response.Cookies[Constants.Update].Value = "1";
             if (grvExpenseEntry.Rows.Count > 0 || grvTimeEntry.Rows.Count > 0)
@@ -188,6 +263,14 @@ namespace AE_SPICA_V001
             btnPreview.Enabled = true;
             btnPreview.Style["background-image"] = "url('Images/bgButton.png')";
             btnPreview.Attributes.Add("class", "ScreenICEButton");
+
+            btnHoldingInv.Enabled = true;
+            btnHoldingInv.Style["background-image"] = "url('Images/bgButton.png')";
+            btnHoldingInv.Attributes.Add("class", "ScreenICEButton");
+
+            btnTimeSheet.Enabled = true;
+            btnTimeSheet.Style["background-image"] = "url('Images/bgButton.png')";
+            btnTimeSheet.Attributes.Add("class", "ScreenICEButton");
         }
 
         protected void grvClub_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
@@ -221,8 +304,34 @@ namespace AE_SPICA_V001
 
             mpePrevClub.Hide();
             txtClubBP.Text = code.Trim();
-            txtCO.Text = name.Trim();
+            if (name.Contains("&#39;"))
+            {
+                txtCO.Text = name.Replace("&#39;", "\'");
+            }
+            else
+            {
+                txtCO.Text = name.Trim();
+            }
             GetClubBPContact(code.Trim().ToString());
+        }
+
+        protected void grvClub_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                var var1 = e.NewPageIndex;
+                var var2 = this.grvClub.PageIndex;
+                this.grvClub.PageIndex = e.NewPageIndex;
+                DataTable dtResult = (DataTable)ViewState["BPDetails"];
+                grvClub.DataSource = dtResult;
+                grvClub.DataBind();
+                mpePrevClub.Show();
+            }
+            catch (Exception ex)
+            {
+                lblerror.Visible = true;
+                lblerror.Text = ex.Message.ToString();
+            }
         }
 
         protected void grvSearch_Sorting(object sender, GridViewSortEventArgs e)
@@ -306,7 +415,8 @@ namespace AE_SPICA_V001
                 if (ddlClub.Text != strSelect.ToString())
                 {
                     string sSAPDBName = Convert.ToString(Request.Cookies[Constants.SAPDBName].Value);
-                    txtClubBP.Text = oFileReference.GetDefaultClubBP(ddlClub.SelectedValue); //ddlTask.SelectedItem.ToString().Trim();
+                    string sCompanyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
+                    txtClubBP.Text = oFileReference.GetDefaultClubBP(ddlClub.SelectedValue, sCompanyCode); //ddlTask.SelectedItem.ToString().Trim();
                     if (txtClubBP.Text != string.Empty || txtClubBP.Text != "")
                     {
                         DataSet dsBPName = oClub.GetBPName(sSAPDBName, txtClubBP.Text);
@@ -483,6 +593,9 @@ namespace AE_SPICA_V001
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
+
+            string sMessage = string.Empty;
+            string sFileRefNo = string.Empty;
             try
             {
                 lblerror.Text = string.Empty;
@@ -548,17 +661,20 @@ namespace AE_SPICA_V001
                 //    lblerror.Text = "Kindly Enter the Period DateTo";
                 //    return;
                 //}
-                //if (txtPeriodDateFrom.Text.ToString() != string.Empty && txtPeriodDateTo.Text.ToString() != string.Empty)
-                //{
-                //    DateTime dFromdate = Convert.ToDateTime(txtPeriodDateFrom.Text);
-                //    DateTime dTodate = Convert.ToDateTime(txtPeriodDateTo.Text);
-                //    if (dTodate < dFromdate)
-                //    {
-                //        lblerror.Visible = true;
-                //        lblerror.Text = "Peroid Date To should not be less than Period Date From";
-                //        return;
-                //    }
-                //}
+                
+                if (txtPeriodDateFrom.Text.ToString() != string.Empty && txtPeriodDateTo.Text.ToString() != string.Empty)
+                {
+                    DateTime dFromdate = DateTime.ParseExact(txtPeriodDateFrom.Text, sDateFormat, null);
+                    DateTime dTodate = DateTime.ParseExact(txtPeriodDateTo.Text, sDateFormat, null);
+                    //DateTime dFromdate = Convert.ToDateTime(txtPeriodDateFrom.Text);
+                    //DateTime dTodate = Convert.ToDateTime(txtPeriodDateTo.Text);
+                    if (dTodate < dFromdate)
+                    {
+                        lblerror.Visible = true;
+                        lblerror.Text = "Peroid Date To should not be less than Period Date From";
+                        return;
+                    }
+                }
                 //if (txtMember.Text.ToString() == string.Empty)
                 //{
                 //    lblerror.Visible = true;
@@ -637,23 +753,34 @@ namespace AE_SPICA_V001
                         Response.Cookies[Constants.Update].Value = string.Empty;
                     }
                 }
-                if (sResult == Constants.Insert)
+                //The following part of code is to split the file reference Number from the Result and to show in the UI 
+                if (sResult.Contains("|"))
+                {
+                    string[] sArray = sResult.Split('|');
+                    sMessage = sArray[0].Trim();
+                    sFileRefNo = sArray[1].Trim();
+                }
+                else
+                {
+                    sMessage = sResult;
+                }
+                if (sMessage == Constants.Insert)
                 {
                     lblerror.Visible = false;
                     lblerror.Text = string.Empty;
                     ClearFields();
                     lblSuccess.Visible = true;
-                    lblSuccess.Text = "File Reference Created successfully";
+                    lblSuccess.Text = "File Reference Created successfully - " + sFileRefNo;
                     lblSuccess.Focus();
                 }
-                else if (sResult == Constants.Update)
+                else if (sMessage == Constants.Update)
                 {
                     //Response.Cookies[Constants.Update].Expires = DateTime.Now;
                     lblerror.Visible = false;
                     lblerror.Text = string.Empty;
                     ClearFields();
                     lblSuccess.Visible = true;
-                    lblSuccess.Text = "File Reference updated successfully";
+                    lblSuccess.Text = "File Reference updated successfully - " + sFileRefNo;
                     lblSuccess.Focus();
                 }
                 else
@@ -690,67 +817,20 @@ namespace AE_SPICA_V001
         {
             try
             {
-                //             Page.ClientScript.RegisterStartupScript(
-                //this.GetType(), "OpenWindow", "window.open('PreviewBilling.aspx','_newtab');", true);
                 Response.Redirect("PreviewBilling.aspx", false);
-                //string sRptFileName = Server.MapPath("~/Reports/") + "AB_Billing_Preview.rpt";
-                //ReportDocument objReport = new ReportDocument();
-                //objReport.Load(Server.MapPath("~/Reports/") + "AB_Billing_Preview.rpt");
+            }
+            catch (Exception ex)
+            {
+                lblerror.Visible = true;
+                lblerror.Text = ex.Message.ToString();
+            }
+        }
 
-                ////objReport.Load(sRptFileName, CrystalDecisions.Shared.OpenReportMethod.OpenReportByTempCopy);
-
-
-                //CrystalDecisions.Shared.ParameterValues pval1 = new ParameterValues();
-                ////CrystalDecisions.Shared.ParameterValues pval2 = new ParameterValues();
-                ////CrystalDecisions.Shared.ParameterValues pval3 = new ParameterValues();
-                ////CrystalDecisions.Shared.ParameterValues pval4 = new ParameterValues();
-
-                //ParameterDiscreteValue pdisval1 = new ParameterDiscreteValue();
-                //pdisval1.Value = sFileRef;
-                //pval1.Add(pdisval1);
-
-                //objReport.DataDefinition.ParameterFields["@FileReferenceNo"].ApplyCurrentValues(pval1);
-
-                ////get connection string from web.config
-
-                //CrystalDecisions.CrystalReports.Engine.Table myTable;
-                //CrystalDecisions.Shared.ConnectionInfo conn = new ConnectionInfo();
-                //CrystalDecisions.Shared.TableLogOnInfo myLog;
-                //string strServer = dbInfo[0].Split('=')[1];//ConfigurationSettings.AppSettings["SQLserver"].ToString();
-                //string strDBName = dbInfo[1].Split('=')[1];//ConfigurationSettings.AppSettings["SQLdatabaseName"].ToString();
-                //string strUID = dbInfo[2].Split('=')[1];//ConfigurationSettings.AppSettings["SQLUserName"].ToString();
-                //string strPassword = dbInfo[3].Split('=')[1];//ConfigurationSettings.AppSettings["SQLPassword"].ToString();
-
-                //conn.ServerName = strServer;
-                //conn.DatabaseName = strDBName;
-                //conn.UserID = strUID;
-                //conn.Password = strPassword;
-
-                //for (int i = 0; i < objReport.Database.Tables.Count; i++)
-                //{
-                //    myTable = objReport.Database.Tables[i];
-                //    myLog = myTable.LogOnInfo;
-                //    myLog.ConnectionInfo = conn;
-                //    myTable.ApplyLogOnInfo(myLog);
-                //    myTable.Location = myLog.TableName;
-                //}
-
-                //CrystalReportViewer1.Visible = true;
-
-                //CrystalReportViewer1.HasPageNavigationButtons = true;
-                //CrystalReportViewer1.HasCrystalLogo = false;
-                //CrystalReportViewer1.HasDrillUpButton = false;
-                //CrystalReportViewer1.HasSearchButton = false;
-                //CrystalReportViewer1.HasToggleGroupTreeButton = false;
-                //CrystalReportViewer1.HasZoomFactorList = false;
-                //CrystalReportViewer1.ToolbarStyle.Width = new Unit("750px");
-
-                //CrystalReportViewer1.AllowedExportFormats = 1;
-
-                //CrystalReportViewer1.ReportSource = objReport;
-
-                //mpePrevBiling.Show();
-
+        protected void btnTimeSheet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Response.Redirect("ViewTimeSheetReport.aspx", false);
             }
             catch (Exception ex)
             {
@@ -763,6 +843,7 @@ namespace AE_SPICA_V001
         {
             try
             {
+                string sLumpSum = string.Empty;
                 lblerror.Text = string.Empty;
                 lblSuccess.Text = string.Empty;
                 if (ddlTypeofBill.Text.ToString() == strSelect.ToString())
@@ -777,7 +858,16 @@ namespace AE_SPICA_V001
                 string sCompanyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
                 string sFileRefNo = Convert.ToString(Request.Cookies[Constants.FileRefNo].Value);
 
-                string sResult = oFileReference.SendToApproval(sUserCode, sCompanyCode, ddlTypeofBill.SelectedValue, sFileRefNo);
+                if (chkLumpSum.Checked == true)
+                {
+                    sLumpSum = "Y";
+                }
+                else
+                {
+                    sLumpSum = "N";
+                }
+
+                string sResult = oFileReference.SendToApproval(sUserCode, sCompanyCode, ddlTypeofBill.SelectedValue, sFileRefNo, txtBillingDetails.Text.ToString(), sLumpSum);
                 if (sResult == "SUCCESS")
                 {
                     ClearFields();
@@ -786,6 +876,45 @@ namespace AE_SPICA_V001
                     lblSuccess.Text = "Send for Approval successfully";
                     lblSuccess.Focus();
                 }
+            }
+            catch (Exception ex)
+            {
+                lblerror.Visible = true;
+                lblerror.Text = ex.Message.ToString();
+            }
+        }
+
+        protected void btnHoldingInv_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                lblerror.Text = string.Empty;
+                lblSuccess.Text = string.Empty;
+
+                //Here is to get the Holding Invoice details from the holding company
+                string sCompanyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
+                string sFileRefNo = Convert.ToString(Request.Cookies[Constants.FileRefNo].Value);
+
+                DataSet sResult = oFileReference.ExtractHoldingInv(sCompanyCode, sFileRefNo, sSQLFormat);
+                ViewState["ExtractHoldingInv"] = sResult.Tables[0];
+                grvHoldingInv.DataSource = sResult;
+                grvHoldingInv.DataBind();
+                if (sResult != null && sResult.Tables.Count > 0)
+                {
+                    if (sResult.Tables[0].Rows.Count > 0)
+                    {
+                        btnHoldingInvPreview.Enabled = true;
+                        btnHoldingInvPreview.Style["background-image"] = "url('Images/bgButton.png')";
+                        btnHoldingInvPreview.Attributes.Add("class", "ScreenICEButton");
+                    }
+                    else
+                    {
+                        btnHoldingInvPreview.Enabled = false;
+                        btnHoldingInvPreview.Style["background-image"] = "url('Images/bgButton_disable.png')";
+                        btnHoldingInvPreview.Attributes.Add("class", "ScreenICEButton disabled");
+                    }
+                }
+                mpeHoldingInv.Show();
             }
             catch (Exception ex)
             {
@@ -888,12 +1017,13 @@ namespace AE_SPICA_V001
 
         public void GetDropdownValues()
         {
-            ddlClub.DataSource = oFileReference.GetClubDetails();
+            string sCmpyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
+            ddlClub.DataSource = oFileReference.GetClubDetails(sCmpyCode);
             ddlClub.DataTextField = "Name";
             ddlClub.DataValueField = "Code";
             ddlClub.DataBind();
 
-            ddlClubSearch.DataSource = oFileReference.GetClubDetails();
+            ddlClubSearch.DataSource = oFileReference.GetClubDetails(sCmpyCode);
             ddlClubSearch.DataTextField = "Name";
             ddlClubSearch.DataValueField = "Code";
             ddlClubSearch.DataBind();
@@ -965,10 +1095,13 @@ namespace AE_SPICA_V001
                 dt.Columns.Add("PeriodDateFrom");
                 dt.Columns.Add("PeriodDateTo");
                 dt.Columns.Add("VoyageNumber");
+                dt.Columns.Add("CloseOn");
+                dt.Columns.Add("LocationStore");
 
                 dt.Rows.Add();
                 dt.Rows[0]["Id"] = lblId.Text;
-                dt.Rows[0]["IncidentDate"] = txtIncidentDate.Text;
+                DateTime dIncidentdate = DateTime.ParseExact(txtIncidentDate.Text, sDateFormat, null);
+                dt.Rows[0]["IncidentDate"] = dIncidentdate;
                 dt.Rows[0]["Vessel"] = txtVessel.Text;
                 dt.Rows[0]["ClubID"] = ddlClub.SelectedValue;
 
@@ -989,6 +1122,15 @@ namespace AE_SPICA_V001
                 dt.Rows[0]["MemberAdd4"] = txtAddressL4.Text;
                 //dt.Rows[0]["BillTo"] = ddlBillTo.SelectedValue;
                 //dt.Rows[0]["BillingAddress"] = txtBillingAddress.Text;
+                if (Request.Cookies[Constants.Update] != null)
+                {
+                    if (Request.Cookies[Constants.Update].Value != string.Empty || Request.Cookies[Constants.Update].Value != "")
+                    {
+                        string sFileRefNo = Convert.ToString(Request.Cookies[Constants.FileRefNo].Value);
+                        dt.Rows[0]["FileReferenceNo"] = sFileRefNo;
+                    }
+                }
+
                 //dt.Rows[0]["FileReferenceNo"] = txtFileReference.Text;
                 dt.Rows[0]["ClaimHandler"] = txtClaimHandler.Text;
                 dt.Rows[0]["year"] = txtYear.Text;
@@ -1006,9 +1148,15 @@ namespace AE_SPICA_V001
                 //dt.Rows[0]["Status"] = ddlStatus.SelectedValue;
                 string sUserCode = Convert.ToString(Request.Cookies[Constants.UserCode].Value);
                 dt.Rows[0]["UserCode"] = sUserCode;
-                dt.Rows[0]["PeriodDateFrom"] = txtPeriodDateFrom.Text;
-                dt.Rows[0]["PeriodDateTo"] = txtPeriodDateTo.Text;
+                DateTime dPeriodDateFrom = DateTime.ParseExact(txtPeriodDateFrom.Text, sDateFormat, null);
+                dt.Rows[0]["PeriodDateFrom"] = dPeriodDateFrom;
+
+                DateTime? dPeriodDateTo = txtPeriodDateTo.Text == string.Empty ? (DateTime?)null : DateTime.ParseExact(txtPeriodDateTo.Text, sDateFormat, null);
+                dt.Rows[0]["PeriodDateTo"] = dPeriodDateTo;
                 dt.Rows[0]["VoyageNumber"] = txtVoyageNumber.Text;
+                DateTime? dCloseOn = txtCloseOn.Text == string.Empty ? (DateTime?)null : DateTime.ParseExact(txtCloseOn.Text, sDateFormat, null);
+                dt.Rows[0]["CloseOn"] = dCloseOn;
+                dt.Rows[0]["LocationStore"] = txtLocationStore.Text;
 
                 return dt;
             }
@@ -1055,6 +1203,10 @@ namespace AE_SPICA_V001
                 txtPeriodDateFrom.Text = string.Empty;
                 txtPeriodDateTo.Text = string.Empty;
                 txtVoyageNumber.Text = string.Empty;
+                txtCloseOn.Text = string.Empty;
+                txtLocationStore.Text = string.Empty;
+                txtBillingDetails.Text = string.Empty;
+
                 grvSearch.DataBind();
                 grvTimeEntry.DataBind();
                 grvExpenseEntry.DataBind();
@@ -1063,6 +1215,11 @@ namespace AE_SPICA_V001
                 lblChargeableAmt.Text = string.Empty;
                 lblGrandTotal.Text = string.Empty;
 
+                lblLastRecNum.Text = string.Empty;
+                lblLastPaymentDate.Text = string.Empty;
+                lblBalance.Text = string.Empty;
+                lblTotalInvAmount.Text = string.Empty;
+
                 btnApproval.Enabled = false;
                 btnApproval.Style["background-image"] = "url('Images/bgButton_disable.png')";
                 btnApproval.Attributes.Add("class", "ScreenICEButton disabled");
@@ -1070,6 +1227,14 @@ namespace AE_SPICA_V001
                 btnPreview.Enabled = false;
                 btnPreview.Style["background-image"] = "url('Images/bgButton_disable.png')";
                 btnPreview.Attributes.Add("class", "ScreenICEButton disabled");
+
+                btnHoldingInv.Enabled = false;
+                btnHoldingInv.Style["background-image"] = "url('Images/bgButton_disable.png')";
+                btnHoldingInv.Attributes.Add("class", "ScreenICEButton disabled");
+
+                btnTimeSheet.Enabled = false;
+                btnTimeSheet.Style["background-image"] = "url('Images/bgButton_disable.png')";
+                btnTimeSheet.Attributes.Add("class", "ScreenICEButton disabled");
 
                 if (Response.Cookies[Constants.Update] != null)
                 {
@@ -1151,6 +1316,99 @@ namespace AE_SPICA_V001
             else
             {
                 ddlClubBPContact.SelectedValue = sDefaultBPContact;
+            }
+        }
+
+        protected void grvHoldingInv_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                var var1 = e.NewPageIndex;
+                var var2 = this.grvClub.PageIndex;
+                this.grvHoldingInv.PageIndex = e.NewPageIndex;
+                DataTable dtResult = (DataTable)ViewState["ExtractHoldingInv"];
+                grvHoldingInv.DataSource = dtResult;
+                grvHoldingInv.DataBind();
+                mpeHoldingInv.Show();
+            }
+            catch (Exception ex)
+            {
+                lblerror.Visible = true;
+                lblerror.Text = ex.Message.ToString();
+            }
+        }
+
+        protected void grvHoldingInv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (GridViewRow row in grvHoldingInv.Rows)
+                {
+                    if (row.RowIndex == grvHoldingInv.SelectedIndex)
+                    {
+                        row.BackColor = ColorTranslator.FromHtml("#3FBBEE");
+                    }
+                    else
+                    {
+                        row.BackColor = ColorTranslator.FromHtml("#FFFFFF");
+                    }
+                }
+
+                string docEntry = grvHoldingInv.SelectedRow.Cells[2].Text;
+                string type = grvHoldingInv.SelectedRow.Cells[0].Text;
+                mpeHoldingInv.Show();
+                Response.Cookies[Constants.HoldingInvDocEntry].Value = docEntry;
+                Response.Cookies[Constants.HoldingInvType].Value = type;
+            }
+            catch (Exception ex)
+            {
+                lblerror.Visible = true;
+                lblerror.Text = ex.Message.ToString();
+            }
+        }
+
+        protected void grvHoldingInv_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+        {
+            try
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(grvHoldingInv, "Select$" + e.Row.RowIndex);
+                    e.Row.Attributes["style"] = "cursor:pointer";
+                }
+            }
+            catch (Exception ex)
+            {
+                lblerror.Visible = true;
+                lblerror.Text = ex.Message.ToString();
+            }
+
+        }
+
+        protected void btnHoldingInvPreview_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                mpeHoldingInv.Hide();
+                Response.Redirect("PreviewHoldingInv.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                lblerror.Visible = true;
+                lblerror.Text = ex.Message.ToString();
+            }
+        }
+
+        protected void btnHoldingInvClose_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                mpeHoldingInv.Hide();
+            }
+            catch (Exception ex)
+            {
+                lblerror.Visible = true;
+                lblerror.Text = ex.Message.ToString();
             }
         }
 

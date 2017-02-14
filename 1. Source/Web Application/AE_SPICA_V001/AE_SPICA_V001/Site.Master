@@ -47,14 +47,21 @@
                     Master <span class="menu-icon fa fa-external-link-square"></span></a></li>
                 <li class="sidebar-list" id="leftMenuAS" runat="server"><a href="ApprovalSetup.aspx">
                     Approval Setup <span class="menu-icon fa fa-tasks"></span></a></li>
+                <li class="sidebar-list" id="LeftMenuListing" runat="server"><a href="" onclick="$('ul#Listing').toggle();">
+                    Reports from SAP <span class="menu-icon fa fa-list-ol"></span></a>
+                    <ul id="Listing" style="display: none;" class="sidebarSubmenu">
+                        <li><a href="DueDTInvoiceReport.aspx">Holding's receipts Report</a></li>
+                    </ul>
+                </li>
                 <li class="sidebar-list" id="leftMenuRep" runat="server"><a href="" onclick="$('ul#contentUsers').toggle();">
                     Reports <span class="menu-icon fa fa-flag-o"></span></a>
                     <ul id="contentUsers" style="display: none;" class="sidebarSubmenu">
-                        <li><a href="ApprovedBillReport.aspx">Approved Bill Report</a></li>
-                        <li><a href="NotYetBillReport.aspx">Net Yet Bill Report</a></li>
-                        <li><a href="DetailedBillReport.aspx">Detailed Bill Report</a></li>
-                        <li><a href="TimEntryReport.aspx">Time Entry Report</a></li>
-                        <li><a href="NoActiveFilesReport.aspx">No Active Files Report</a></li>
+                        <li><a href="ApprovedBillReport.aspx">Approved bills Report</a></li>
+                        <li><a href="NotYetBillReport.aspx">Net yet billed Report</a></li>
+                        <li><a href="DetailedBillReport.aspx">Detailed bills Report</a></li>
+                        <li><a href="TimEntryReport.aspx">Time entry Report</a></li>
+                        <li><a href="NoActiveFilesReport.aspx">Inactivity Report</a></li>
+                        <li id="leftMenuSR" runat="server"><a href="StatusReport.aspx">Status Report</a></li>
                     </ul>
                 </li>
                 <li class="sidebar-list" id="leftMenuChangePassword" runat="server"><a href="ChangePassword.aspx">

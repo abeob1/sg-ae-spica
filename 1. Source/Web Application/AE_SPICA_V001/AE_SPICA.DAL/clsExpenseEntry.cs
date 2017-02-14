@@ -59,8 +59,9 @@ namespace AE_SPICA.DAL
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("After converting date " + sDate, sFuncName);
                 string sParameter = "'" + sDate + "'," +
                             "'" + dt.Rows[0]["FileReference"].ToString() + "','" + dt.Rows[0]["Expense"].ToString().Replace("'", "''") + "','" + dt.Rows[0]["ChargableAmt"].ToString() + "'," +
-                            "'" + dt.Rows[0]["Currency"].ToString() + "','" + dt.Rows[0]["Remarks"].ToString() + "','" + dt.Rows[0]["Attachment"].ToString() + "'," +
-                            "'" + dt.Rows[0]["CompanyCode"].ToString() + "','" + dt.Rows[0]["UserCode"].ToString() + "'";
+                            "'" + dt.Rows[0]["Currency"].ToString() + "','" + dt.Rows[0]["Remarks"].ToString().Replace("'", "''") + "','" + dt.Rows[0]["Attachment"].ToString() + "'," +
+                            "'" + dt.Rows[0]["CompanyCode"].ToString() + "','" + dt.Rows[0]["UserCode"].ToString() + "'," +
+                            "'" + dt.Rows[0]["ApprovalStatus"].ToString() + "'";
 
                 string sInsertQuery = "insert into tbl_ExpenseEntry(" + sColumnNames + ") values(" + sParameter + ")";
 
@@ -112,14 +113,14 @@ namespace AE_SPICA.DAL
                 {
                     sUpdateQuery = "update tbl_ExpenseEntry set Date = '" + sDate + "'," +
                                             "FileReference = '" + dt.Rows[0]["FileReference"].ToString() + "',Expense = '" + dt.Rows[0]["Expense"].ToString().Replace("'", "''") + "',ChargableAmt = '" + dt.Rows[0]["ChargableAmt"].ToString() + "'," +
-                                            "Currency = '" + dt.Rows[0]["Currency"].ToString() + "',Remarks = '" + dt.Rows[0]["Remarks"].ToString() + "',Attachment = '" + dt.Rows[0]["Attachment"].ToString() + "' " +
+                                            "Currency = '" + dt.Rows[0]["Currency"].ToString() + "',Remarks = '" + dt.Rows[0]["Remarks"].ToString().Replace("'", "''") + "',Attachment = '" + dt.Rows[0]["Attachment"].ToString() + "' " +
                                             "Where Id = '" + dt.Rows[0]["Id"].ToString() + "'";
                 }
                 else
                 {
                     sUpdateQuery = "update tbl_ExpenseEntry set Date = '" + sDate + "'," +
                                                                "FileReference = '" + dt.Rows[0]["FileReference"].ToString() + "',Expense = '" + dt.Rows[0]["Expense"].ToString() + "',ChargableAmt = '" + dt.Rows[0]["ChargableAmt"].ToString() + "'," +
-                                                               "Currency = '" + dt.Rows[0]["Currency"].ToString() + "',Remarks = '" + dt.Rows[0]["Remarks"].ToString() + "' " +
+                                                               "Currency = '" + dt.Rows[0]["Currency"].ToString() + "',Remarks = '" + dt.Rows[0]["Remarks"].ToString().Replace("'", "''") + "' " +
                                                                " Where Id = '" + dt.Rows[0]["Id"].ToString() + "'";
                 }
 
@@ -233,13 +234,13 @@ namespace AE_SPICA.DAL
             return dsResult;
         }
 
-        public DataSet GetClubDetails()
+        public DataSet GetClubDetails(string sCompanyCode)
         {
             try
             {
                 sFuncName = "GetClubDetails()";
 
-                sql = "SELECT '-- Select --' Code, '-- Select --' Name UNION ALL  SELECT ClubCode [Code],ClubName[Name] from tbl_Club where IsNull(IsActive,'N') = 'Y'";
+                sql = "SELECT '-- Select --' Code, '-- Select --' Name UNION ALL  SELECT ClubCode [Code],ClubName[Name] from tbl_Club where CompanyCode = '" + sCompanyCode + "' and IsNull(IsActive,'N') = 'Y'";
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Calling ExecuteSqlString()", sFuncName);
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Query : " + sql, sFuncName);
                 dsResult = (DataSet)oDataAccess.ExecuteSqlString(sql);

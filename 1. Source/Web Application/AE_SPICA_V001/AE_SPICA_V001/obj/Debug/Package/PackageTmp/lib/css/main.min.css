@@ -2100,7 +2100,8 @@ pre code {
     }
 }
 table {
-    background-color: transparent
+    background-color: transparent;
+    width: 1185px;
 }
 th {
     text-align: left

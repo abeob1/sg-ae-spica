@@ -57,12 +57,13 @@ namespace AE_SPICA.DAL
                 //if (dsResult != null && dsResult.Tables[0].Rows.Count == 0)
                 //{
                 // dt.Rows[0]["FileReferenceNo"].ToString()
-                string sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                string sDate = string.Empty;
+                sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 string billAmt = dt.Rows[0]["BillAmount"].ToString() == "" ? "0" : dt.Rows[0]["BillAmount"].ToString();
                 string sParameter = "'" + sDate + "'," +
                             "'" + dt.Rows[0]["FileReference"].ToString() + "','" + dt.Rows[0]["Task"].ToString().Replace("'", "''") + "','" + dt.Rows[0]["Description"].ToString().Replace("'", "''") + "'," +
                             "'" + dt.Rows[0]["Duration"].ToString() + "','" + dt.Rows[0]["BillableUnit"].ToString() + "','" + billAmt + "'," +
-                            "'" + dt.Rows[0]["CompanyCode"].ToString() + "','" + dt.Rows[0]["UserCode"].ToString() + "','" + dt.Rows[0]["PrivateRemarks"].ToString() + "',"+
+                            "'" + dt.Rows[0]["CompanyCode"].ToString() + "','" + dt.Rows[0]["UserCode"].ToString() + "','" + dt.Rows[0]["PrivateRemarks"].ToString() + "'," +
                             "'" + dt.Rows[0]["ApprovalStatus"].ToString() + "'";
 
                 string sInsertQuery = "insert into tbl_TimeEntry(" + sColumnNames + ") values(" + sParameter + ")";

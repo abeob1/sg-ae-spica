@@ -55,6 +55,8 @@ namespace AE_SPICA_V001
                     {
                         Response.Cookies[Constants.Update].Value = string.Empty;
                     }
+
+                    txtClaimHandler.Text = Request.Cookies[Constants.UserCode].Value.ToString();
                 }
             }
             catch (Exception ex)
@@ -416,6 +418,7 @@ namespace AE_SPICA_V001
                 {
                     string sSAPDBName = Convert.ToString(Request.Cookies[Constants.SAPDBName].Value);
                     string sCompanyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
+                    txtYear.Text = oFileReference.GetNumberingSeriesYear(sCompanyCode, ddlClub.SelectedValue);
                     txtClubBP.Text = oFileReference.GetDefaultClubBP(ddlClub.SelectedValue, sCompanyCode); //ddlTask.SelectedItem.ToString().Trim();
                     if (txtClubBP.Text != string.Empty || txtClubBP.Text != "")
                     {
@@ -426,6 +429,7 @@ namespace AE_SPICA_V001
                 }
                 else
                 {
+                    txtYear.Text = string.Empty;
                     txtClubBP.Text = string.Empty;
                     txtCO.Text = string.Empty;
                 }

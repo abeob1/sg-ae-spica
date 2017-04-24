@@ -552,6 +552,36 @@ namespace AE_SPICA.DAL
             return dsResult;
         }
 
+        public string GetNumberingSeriesYear(string sCompanyCode, string sClubCode)
+        {
+            try
+            {
+                string sYear = string.Empty;
+                sFuncName = "GetNumberingSeriesYear()";
+
+                sql = "select Top 1 [No],(Year([YEAR]) - 1) [YEAR] from tbl_numberingSeries where [YEAR] >= '" + DateTime.Now.Date.ToString("MM/dd/yyyy", CultureInfo.InvariantCulture) + "' AND IsActive = 1 AND CompanyCode = '" + sCompanyCode + "' AND ClubCode = '" + sClubCode + "'";
+
+                dsResult = (DataSet)oDataAccess.ExecuteSqlString(sql);
+                if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Completed with SUCCESS", sFuncName);
+
+                if (dsResult != null && dsResult.Tables.Count > 0)
+                {
+                    if (dsResult.Tables[0].Rows.Count > 0)
+                    {
+                        sYear = dsResult.Tables[0].Rows[0]["YEAR"].ToString();
+                    }
+                }
+                return sYear;
+            }
+            catch (Exception ex)
+            {
+                sErrDesc = ex.Message.ToString();
+                if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile(sErrDesc, sFuncName);
+                if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Completed With ERROR  ", sFuncName);
+                throw ex;
+            }
+        }
+
         #endregion
 
     }

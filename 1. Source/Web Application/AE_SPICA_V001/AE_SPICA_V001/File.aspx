@@ -364,7 +364,8 @@
                             :
                         </td>
                         <td>
-                            <asp:TextBox ID="txtYear" runat="server" class="form-control input-little" MaxLength="4"></asp:TextBox>
+                            <asp:TextBox ID="txtYear" runat="server" class="form-control input-little" MaxLength="4"
+                                ReadOnly="true"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -394,7 +395,7 @@
                         </td>
                         <td>
                             <asp:TextBox ID="txtClaimHandler" runat="server" class="form-control input-little"
-                                MaxLength="150"></asp:TextBox>
+                                MaxLength="150" ReadOnly="true"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

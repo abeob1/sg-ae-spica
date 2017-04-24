@@ -173,3 +173,15 @@ Incorrect syntax near ')'.
 [11/25/2016 2:15:24 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.
 [11/25/2016 2:16:10 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.
 [11/25/2016 2:17:24 PM][          GetNumberingSeries()] String was not recognized as a valid DateTime.
+[04/16/2017 2:04:32 PM][             CreateTimeEntry()] String was not recognized as a valid DateTime.
+[04/16/2017 2:13:55 PM][             CreateTimeEntry()] String was not recognized as a valid DateTime.
+[04/16/2017 2:15:22 PM][             CreateTimeEntry()] String was not recognized as a valid DateTime.
+[04/16/2017 2:51:44 PM][             CreateTimeEntry()] String was not recognized as a valid DateTime.
+[16/04/2017 2:53:40 PM][             CreateTimeEntry()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+The statement has been terminated.
+[04/16/2017 3:24:16 PM][      GetNumberingSeriesYear()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[04/16/2017 3:26:36 PM][      GetNumberingSeriesYear()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[04/16/2017 3:28:46 PM][      GetNumberingSeriesYear()] The conversion of a varchar data type to a datetime data type resulted in an out-of-range value.
+[04/16/2017 3:46:18 PM][             CreateTimeEntry()] String was not recognized as a valid DateTime.
+[04/16/2017 3:46:44 PM][             CreateTimeEntry()] String was not recognized as a valid DateTime.
+[04/16/2017 3:48:33 PM][             CreateTimeEntry()] String was not recognized as a valid DateTime.

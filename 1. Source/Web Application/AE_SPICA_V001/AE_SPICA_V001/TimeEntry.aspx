@@ -213,7 +213,7 @@
                             </td>
                             <td>
                                 <asp:TextBox ID="txtFileReference" runat="server" class="form-control input-little"
-                                    MaxLength="150" ReadOnly ="true"></asp:TextBox>
+                                    MaxLength="150" ReadOnly="true"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -247,14 +247,26 @@
                     <table width="200" border="0" class="table borderless" cellpadding="2px;" cellspacing="2px;">
                         <tr>
                             <td>
+                                <asp:RadioButton ID="rbtnFixedAmt" runat="server" Text="Fixed Amount" AutoPostBack="true"
+                                    OnCheckedChanged="rbtnFixedAmt_CheckedChanged" />
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <asp:RadioButton ID="rbtnKeyInAmt" runat="server" Text="Key in Amount" AutoPostBack="true"
+                                    OnCheckedChanged="rbtnKeyInAmt_CheckedChanged" Checked="true" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <asp:Label ID="Label1" runat="server" Text="Duration"></asp:Label><span class="mandatory">*</span>
                             </td>
                             <td>
                                 :
                             </td>
                             <td>
-                                <asp:TextBox ID="txtDuration" runat="server" class="form-control input-little" MaxLength="20" AutoPostBack = "true"
-                                    onkeypress="CheckNumeric(event);" OnTextChanged="txtDuration_onTextChanged"></asp:TextBox>
+                                <asp:TextBox ID="txtDuration" runat="server" class="form-control input-little" MaxLength="20"
+                                    AutoPostBack="true" onkeypress="CheckNumeric(event);" OnTextChanged="txtDuration_onTextChanged"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -265,17 +277,27 @@
                                 :
                             </td>
                             <td>
-                                <asp:TextBox ID="txtBillableUnit" runat="server" class="form-control input-little" AutoPostBack = "true"
-                                    MaxLength="20" onkeypress="CheckNumeric(event);" OnTextChanged="txtBillableUnit_onTextChanged"></asp:TextBox>
+                                <asp:TextBox ID="txtBillableUnit" runat="server" class="form-control input-little"
+                                    AutoPostBack="true" MaxLength="20" onkeypress="CheckNumeric(event);" OnTextChanged="txtBillableUnit_onTextChanged"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="Label6" runat="server" Text="Billable Amount" Visible="false"></asp:Label>
+                                <asp:Label ID="Label6" runat="server" Text="Fixed Amount"></asp:Label><span class="mandatory">*</span>
                             </td>
-                            <%--<td>
-                                
-                            </td>--%>
+                            <td>
+                            </td>
+                            <td>
+                                <asp:TextBox ID="txtFixedAmount" runat="server" class="form-control input-little"
+                                    MaxLength="20" onkeypress="return isNumberKey(event)" Enabled="false"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Label8" runat="server" Text="Billable Amount" Visible="false"></asp:Label>
+                            </td>
+                            <td>
+                            </td>
                             <td>
                                 <asp:TextBox ID="txtBillAmount" runat="server" class="form-control input-little"
                                     MaxLength="20" onkeypress="return isNumberKey(event)" Visible="false"></asp:TextBox>
@@ -335,7 +357,7 @@
                         <asp:TemplateField HeaderText="Date">
                             <HeaderStyle VerticalAlign="Middle" Font-Bold="true" Width="100" />
                             <ItemTemplate>
-                                <asp:Label ID="lblDate" runat="server" Text='<%# Eval("Date", "{0:yyyy-MM-dd}") %>'
+                                <asp:Label ID="lblDate" runat="server" Text='<%# Eval("Date", "{0:dd/MM/yyyy}") %>'
                                     BorderStyle="none" />
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -378,7 +400,7 @@
                                     BorderStyle="none" />
                             </ItemTemplate>
                         </asp:TemplateField>
-                          <asp:TemplateField HeaderText="Private Remarks">
+                        <asp:TemplateField HeaderText="Private Remarks">
                             <HeaderStyle VerticalAlign="Middle" Font-Bold="true" />
                             <ItemTemplate>
                                 <asp:Label ID="lblPrivateRemarks" runat="server" Text='<%# Bind("PrivateRemarks") %>'

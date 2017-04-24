@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Configuration;
 
 namespace AE_SPICA.DAL
 {
@@ -13,6 +14,9 @@ namespace AE_SPICA.DAL
         #region Objects
 
         public DataAccess oDataAccess = new DataAccess();
+        public string sDateFormat = ConfigurationManager.AppSettings["DateFormat"].ToString();
+        public string sSQLFormat = ConfigurationManager.AppSettings["SQLFormat"].ToString();
+        public string sDefaultDate = ConfigurationManager.AppSettings["DefaultDate"].ToString();
         public string sql = string.Empty;
         clsLog oLog = new clsLog();
         public string sResult = string.Empty;
@@ -55,7 +59,7 @@ namespace AE_SPICA.DAL
                 // dt.Rows[0]["FileReferenceNo"].ToString()
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Before converting date " + dt.Rows[0]["Date"].ToString(), sFuncName);
                 //DateTime dt1 = Convert.ToDateTime(dt.Rows[0]["Date"].ToString());
-                string sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                string sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString(sDateFormat, CultureInfo.InvariantCulture);
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("After converting date " + sDate, sFuncName);
                 string sParameter = "'" + sDate + "'," +
                             "'" + dt.Rows[0]["FileReference"].ToString() + "','" + dt.Rows[0]["Expense"].ToString().Replace("'", "''") + "','" + dt.Rows[0]["ChargableAmt"].ToString() + "'," +
@@ -103,7 +107,7 @@ namespace AE_SPICA.DAL
                 if (dt.Rows[0]["Date"].ToString() != "")
                 {
                     if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Before converting date" + dt.Rows[0]["Date"].ToString(), sFuncName);
-                    sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
+                    sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString(sDateFormat, CultureInfo.InvariantCulture);
                     if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("After converting date" + sDate, sFuncName);
                     //dtime = Convert.ToDateTime(dt.Rows[0]["Date"].ToString());
                     //sDate = dtime.ToString("yyyy-MM-dd HH:mm:ss");

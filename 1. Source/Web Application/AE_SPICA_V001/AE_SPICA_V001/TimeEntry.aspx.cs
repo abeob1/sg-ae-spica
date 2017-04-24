@@ -200,6 +200,27 @@ namespace AE_SPICA_V001
             }
         }
 
+        protected void rbtnFixedAmt_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBillableUnit.Enabled = false;
+            txtDuration.Enabled = false;
+            txtFixedAmount.Enabled = true;
+            rbtnFixedAmt.Checked = true;
+            rbtnKeyInAmt.Checked = false;
+            txtBillableUnit.Text = string.Empty;
+            txtDuration.Text = string.Empty;
+        }
+
+        protected void rbtnKeyInAmt_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBillableUnit.Enabled = true;
+            txtDuration.Enabled = true;
+            txtFixedAmount.Enabled = false;
+            txtFixedAmount.Text = string.Empty;
+            rbtnFixedAmt.Checked = false;
+            rbtnKeyInAmt.Checked = true;
+        }
+
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -265,17 +286,32 @@ namespace AE_SPICA_V001
                     lblerror.Text = "Kindly Enter the Task Description";
                     return;
                 }
-                if (txtDuration.Text.ToString() == string.Empty)
+                if (rbtnKeyInAmt.Checked)
                 {
-                    lblerror.Visible = true;
-                    lblerror.Text = "Kindly Enter the Duration";
-                    return;
+                    if (txtDuration.Text.ToString() == string.Empty)
+                    {
+                        lblerror.Visible = true;
+                        lblerror.Text = "Kindly Enter the Duration";
+                        return;
+                    }
                 }
-                if (txtBillableUnit.Text.ToString() == string.Empty)
+                if (rbtnKeyInAmt.Checked)
                 {
-                    lblerror.Visible = true;
-                    lblerror.Text = "Kindly Enter the Billable Unit";
-                    return;
+                    if (txtBillableUnit.Text.ToString() == string.Empty)
+                    {
+                        lblerror.Visible = true;
+                        lblerror.Text = "Kindly Enter the Billable Unit";
+                        return;
+                    }
+                }
+                if (rbtnFixedAmt.Checked)
+                {
+                    if (txtFixedAmount.Text.ToString() == string.Empty)
+                    {
+                        lblerror.Visible = true;
+                        lblerror.Text = "Kindly Enter the Fixed Amount";
+                        return;
+                    }
                 }
 
                 DataTable dt = new DataTable();
@@ -301,7 +337,7 @@ namespace AE_SPICA_V001
                 {
                     lblerror.Visible = false;
                     lblerror.Text = string.Empty;
-                    
+
                     ClearFields();
                     string sUserCode = Convert.ToString(Request.Cookies[Constants.UserCode].Value);
                     string sCompanyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
@@ -322,7 +358,7 @@ namespace AE_SPICA_V001
                     //Response.Cookies[Constants.Update].Expires = DateTime.Now;
                     lblerror.Visible = false;
                     lblerror.Text = string.Empty;
-                    
+
                     ClearFields();
                     string sUserCode = Convert.ToString(Request.Cookies[Constants.UserCode].Value);
                     string sCompanyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
@@ -397,7 +433,27 @@ namespace AE_SPICA_V001
                 txtDescription.Text = lblDescription.Text;
                 txtDuration.Text = lblDuration.Text;
                 txtBillableUnit.Text = lblBillableUnit.Text;
-                txtBillAmount.Text = lblBillAmount.Text;
+                if (txtDuration.Text == "0" && txtBillableUnit.Text == "0")
+                {
+                    txtFixedAmount.Text = lblBillAmount.Text;
+                    rbtnFixedAmt.Checked = true;
+                    rbtnKeyInAmt.Checked = false;
+                    txtBillableUnit.Text = string.Empty;
+                    txtDuration.Text = string.Empty;
+                    txtDuration.Enabled = false;
+                    txtBillableUnit.Enabled = false;
+                    txtFixedAmount.Enabled = true;
+                }
+                else
+                {
+                    txtFixedAmount.Text = string.Empty;
+                    rbtnFixedAmt.Checked = false;
+                    rbtnKeyInAmt.Checked = true;
+                    txtDuration.Enabled = true;
+                    txtBillableUnit.Enabled = true;
+                    txtFixedAmount.Enabled = false;
+                }
+               
                 txtPrivateRemarks.Text = lblPrivateRemarks.Text;
                 Response.Cookies[Constants.Update].Value = "1";
                 btnSubmit.Enabled = true;
@@ -424,7 +480,7 @@ namespace AE_SPICA_V001
                     //Response.Cookies[Constants.Update].Expires = DateTime.Now;
                     lblerror.Visible = false;
                     lblerror.Text = string.Empty;
-                    
+
                     ClearFields();
                     string sUserCode = Convert.ToString(Request.Cookies[Constants.UserCode].Value);
                     string sCompanyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
@@ -506,7 +562,7 @@ namespace AE_SPICA_V001
                 int calcDuration = 0;
                 int time = Convert.ToInt32(ViewState["Time"]);
                 int BillableUnit = Convert.ToInt32(ViewState["BillableUnit"]);
-                int resultForOneUnit =  time/ BillableUnit;
+                int resultForOneUnit = time / BillableUnit;
                 calcDuration = resultForOneUnit * Convert.ToInt32(txtBillableUnit.Text);
 
                 txtDuration.Text = calcDuration.ToString();
@@ -559,6 +615,9 @@ namespace AE_SPICA_V001
         {
             try
             {
+                double result = 0;
+                double dResult = 0;
+
                 dt.Columns.Add("Id");
                 dt.Columns.Add("Date");
                 dt.Columns.Add("FileReference");
@@ -574,19 +633,36 @@ namespace AE_SPICA_V001
 
                 dt.Rows.Add();
                 dt.Rows[0]["Id"] = lblId.Text;
-                dt.Rows[0]["Date"] = txtTimeEntryDate.Text;
+                DateTime dTimeEntrydate = DateTime.ParseExact(txtTimeEntryDate.Text, sDateFormat, null);
+                dt.Rows[0]["Date"] = dTimeEntrydate;
                 dt.Rows[0]["FileReference"] = txtFileReference.Text;
                 dt.Rows[0]["Task"] = ddlTask.SelectedItem.ToString();
                 dt.Rows[0]["Description"] = txtDescription.Text;
-                dt.Rows[0]["Duration"] = txtDuration.Text;
-                dt.Rows[0]["BillableUnit"] = txtBillableUnit.Text;
-                //To calculate the Bill Amount , the Formula is 
-                // BillingRateConfiguration table (hourly rate/60) * (time entry table duration/duration in configuration table)
+                if (rbtnFixedAmt.Checked == true)
+                {
+                    dt.Rows[0]["Duration"] = string.Empty;
+                    dt.Rows[0]["BillableUnit"] = string.Empty;
+                }
+                else if (rbtnKeyInAmt.Checked == true)
+                {
+                    dt.Rows[0]["Duration"] = txtDuration.Text;
+                    dt.Rows[0]["BillableUnit"] = txtBillableUnit.Text;
 
-                double result = Convert.ToDouble(txtDuration.Text) / Convert.ToDouble(ViewState["Time"]);
-                int DurationResult = (int)Math.Ceiling(result);
-                double dResult = (Convert.ToDouble(ViewState["HourlyRate"]) / 10) * Convert.ToDouble(DurationResult);
-                dt.Rows[0]["BillAmount"] = dResult.ToString();
+                    //To calculate the Bill Amount , the Formula is 
+                    // BillingRateConfiguration table (hourly rate/60) * (time entry table duration/duration in configuration table)
+                    result = Convert.ToDouble(txtDuration.Text) / Convert.ToDouble(ViewState["Time"]);
+                    int DurationResult = (int)Math.Ceiling(result);
+                    dResult = (Convert.ToDouble(ViewState["HourlyRate"]) / 10) * Convert.ToDouble(DurationResult);
+                }
+
+                if (rbtnFixedAmt.Checked == true)
+                {
+                    dt.Rows[0]["BillAmount"] = txtFixedAmount.Text;
+                }
+                else
+                {
+                    dt.Rows[0]["BillAmount"] = dResult.ToString();
+                }
                 string sUserCode = Convert.ToString(Request.Cookies[Constants.UserCode].Value);
                 string sCompanyCode = Convert.ToString(Request.Cookies[Constants.CompanyCode].Value);
                 dt.Rows[0]["CompanyCode"] = sCompanyCode;
@@ -640,6 +716,5 @@ namespace AE_SPICA_V001
         }
 
         #endregion
-
     }
 }

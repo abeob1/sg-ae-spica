@@ -48,7 +48,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="Label3" runat="server" Text="Period From Date"></asp:Label><span class="mandatory">*</span>
+                                <asp:Label ID="Label3" runat="server" Text="Time entry From Date"></asp:Label>
                             </td>
                             <td>
                                 :
@@ -62,7 +62,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="Label5" runat="server" Text="Period To Date"></asp:Label><span class="mandatory">*</span>
+                                <asp:Label ID="Label5" runat="server" Text="Time entry To Date"></asp:Label><span class="mandatory">*</span>
                             </td>
                             <td>
                                 :

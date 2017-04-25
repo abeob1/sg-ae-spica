@@ -86,16 +86,16 @@ namespace AE_SPICA_V001
                     }
                 }
 
-                if (txtPeriodFromDate.Text.ToString() == string.Empty)
-                {
-                    lblerror.Visible = true;
-                    lblerror.Text = "Kindly Select the Period From Date";
-                    return;
-                }
+                //if (txtPeriodFromDate.Text.ToString() == string.Empty)
+                //{
+                //    lblerror.Visible = true;
+                //    lblerror.Text = "Kindly Select the Period From Date";
+                //    return;
+                //}
                 if (txtPeriodToDate.Text.ToString() == string.Empty)
                 {
                     lblerror.Visible = true;
-                    lblerror.Text = "Kindly Select the Period To Date";
+                    lblerror.Text = "Kindly Select the Time entry To Date";
                     return;
                 }
 
@@ -106,7 +106,7 @@ namespace AE_SPICA_V001
                     if (dPeriodTodate < dPeriodFromdate)
                     {
                         lblerror.Visible = true;
-                        lblerror.Text = "Incident To Date should not be less than Incident From Date";
+                        lblerror.Text = "Time entry To Date should not be less than Time entry From Date";
                         return;
                     }
                 }

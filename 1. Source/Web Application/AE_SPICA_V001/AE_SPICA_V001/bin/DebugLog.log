@@ -20182,3 +20182,18 @@
 [04/17/2017 11:57:53 AM][GetCompanyDetails()] Calling ExecuteSqlString()
 [04/17/2017 11:57:53 AM][GetCompanyDetails()] Query : SELECT '-- Select --' Code, '-- Select --' Name UNION ALL SELECT Code, Name FROM tbl_CompanyData WHERE ISNULL(IsActive,'Y') = 'Y'
 [04/17/2017 11:57:53 AM][GetCompanyDetails()] Completed with SUCCESS
+[04/25/2017 4:19:57 PM][GetCompanyDetails()] Calling ExecuteSqlString()
+[04/25/2017 4:19:57 PM][GetCompanyDetails()] Query : SELECT '-- Select --' Code, '-- Select --' Name UNION ALL SELECT Code, Name FROM tbl_CompanyData WHERE ISNULL(IsActive,'Y') = 'Y'
+[04/25/2017 4:19:58 PM][GetCompanyDetails()] Completed with SUCCESS
+[04/25/2017 4:20:58 PM][LoginValidation()] Calling Run_StoredProcedure()
+[04/25/2017 4:20:58 PM][LoginValidation()] Procedure : EXEC [AE_SP001_LoginCheck] 'paul','1234','SPC001'
+[04/25/2017 4:20:58 PM][LoginValidation()] Completed with SUCCESS
+[04/25/2017 4:21:11 PM][GetClaimHandler()] Calling ExecuteSqlString()
+[04/25/2017 4:21:11 PM][GetClaimHandler()] Query : SELECT '-- Select --' Code, '-- Select --' Name UNION ALL select distinct ClaimHandler 'Code', ClaimHandler 'Name' from tbl_FileReference order by Name
+[04/25/2017 4:21:11 PM][GetClaimHandler()] Completed with SUCCESS
+[04/25/2017 4:23:41 PM][GetClaimHandler()] Calling ExecuteSqlString()
+[04/25/2017 4:23:41 PM][GetClaimHandler()] Query : SELECT '-- Select --' Code, '-- Select --' Name UNION ALL select distinct ClaimHandler 'Code', ClaimHandler 'Name' from tbl_FileReference order by Name
+[04/25/2017 4:23:41 PM][GetClaimHandler()] Completed with SUCCESS
+[04/25/2017 4:25:18 PM][GetCompanyDetails()] Calling ExecuteSqlString()
+[04/25/2017 4:25:18 PM][GetCompanyDetails()] Query : SELECT '-- Select --' Code, '-- Select --' Name UNION ALL SELECT Code, Name FROM tbl_CompanyData WHERE ISNULL(IsActive,'Y') = 'Y'
+[04/25/2017 4:25:18 PM][GetCompanyDetails()] Completed with SUCCESS

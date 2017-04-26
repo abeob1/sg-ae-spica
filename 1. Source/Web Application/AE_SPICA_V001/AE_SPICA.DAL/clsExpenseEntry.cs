@@ -59,7 +59,7 @@ namespace AE_SPICA.DAL
                 // dt.Rows[0]["FileReferenceNo"].ToString()
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Before converting date " + dt.Rows[0]["Date"].ToString(), sFuncName);
                 //DateTime dt1 = Convert.ToDateTime(dt.Rows[0]["Date"].ToString());
-                string sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString(sDateFormat, CultureInfo.InvariantCulture);
+                string sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                 if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("After converting date " + sDate, sFuncName);
                 string sParameter = "'" + sDate + "'," +
                             "'" + dt.Rows[0]["FileReference"].ToString() + "','" + dt.Rows[0]["Expense"].ToString().Replace("'", "''") + "','" + dt.Rows[0]["ChargableAmt"].ToString() + "'," +
@@ -107,7 +107,7 @@ namespace AE_SPICA.DAL
                 if (dt.Rows[0]["Date"].ToString() != "")
                 {
                     if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("Before converting date" + dt.Rows[0]["Date"].ToString(), sFuncName);
-                    sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString(sDateFormat, CultureInfo.InvariantCulture);
+                    sDate = Convert.ToDateTime(dt.Rows[0]["Date"].ToString()).ToString("MM/dd/yyyy", CultureInfo.InvariantCulture);
                     if (p_iDebugMode == DEBUG_ON) oLog.WriteToLogFile_Debug("After converting date" + sDate, sFuncName);
                     //dtime = Convert.ToDateTime(dt.Rows[0]["Date"].ToString());
                     //sDate = dtime.ToString("yyyy-MM-dd HH:mm:ss");
@@ -191,7 +191,7 @@ namespace AE_SPICA.DAL
            "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(DATE, IncidentDate) = '1900-01-01' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, 120) END)" +
                     "[IncidentDate],Status,Description FROM tbl_FileReference where (ISNULL('" + sVessel + "','') = '' OR Vessel like '%" + sVessel + "%')" +
                     "AND (ISNULL('" + sClub + "','') = '' OR ClubID like '%" + sClub + "%')" +
-                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%'" + sMember + "'%')" +
+                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%" + sMember + "%')" +
                     "AND (ISNULL('" + sFileReference + "','') = '' OR FileReferenceNo like '%" + sFileReference + "%')" +
                     "AND (ISNULL('" + sClaimHandler + "','') = '' OR ClaimHandler like '%" + sClaimHandler + "%')" +
                     "AND (ISNULL('" + sYear + "','') = '' OR [year] like '%" + sYear + "%')" +
@@ -204,7 +204,7 @@ namespace AE_SPICA.DAL
            "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(DATE, IncidentDate) = '1900-01-01' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, 120) END)" +
                     "[IncidentDate],Status,Description FROM tbl_FileReference where (ISNULL('" + sVessel + "','') = '' OR Vessel like '%" + sVessel + "%')" +
                     "AND (ISNULL('" + sClub + "','') = '' OR ClubID like '%" + sClub + "%')" +
-                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%'" + sMember + "'%')" +
+                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%" + sMember + "%')" +
                     "AND (ISNULL('" + sFileReference + "','') = '' OR FileReferenceNo like '%" + sFileReference + "%')" +
                     "AND (ISNULL('" + sClaimHandler + "','') = '' OR ClaimHandler like '%" + sClaimHandler + "%')" +
                     "AND (ISNULL('" + sYear + "','') = '' OR [year] like '%" + sYear + "%')" +
@@ -217,7 +217,7 @@ namespace AE_SPICA.DAL
            "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(DATE, IncidentDate) = '1900-01-01' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, 120) END)" +
                     "[IncidentDate],Status,Description FROM tbl_FileReference where (ISNULL('" + sVessel + "','') = '' OR Vessel like '%" + sVessel + "%')" +
                     "AND (ISNULL('" + sClub + "','') = '' OR ClubID like '%" + sClub + "%')" +
-                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%'" + sMember + "'%')" +
+                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%" + sMember + "%')" +
                     "AND (ISNULL('" + sFileReference + "','') = '' OR FileReferenceNo like '%" + sFileReference + "%')" +
                     "AND (ISNULL('" + sClaimHandler + "','') = '' OR ClaimHandler like '%" + sClaimHandler + "%')" +
                     "AND (ISNULL('" + sYear + "','') = '' OR [year] like '%" + sYear + "%')" +

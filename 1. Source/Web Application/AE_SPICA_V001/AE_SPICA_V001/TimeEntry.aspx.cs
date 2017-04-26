@@ -8,6 +8,7 @@ using AE_SPICA.DAL;
 using System.Drawing;
 using System.Data;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace AE_SPICA_V001
 {
@@ -15,6 +16,7 @@ namespace AE_SPICA_V001
     {
         #region Objects
         public string strSelect = "-- Select --";
+        clsLog oLog = new clsLog();
         public clsTimeEntry oTimeEntry = new clsTimeEntry();
         public clsFileReference oFileReference = new clsFileReference();
         public string sDateFormat = ConfigurationManager.AppSettings["DateFormat"].ToString();
@@ -385,6 +387,15 @@ namespace AE_SPICA_V001
                 lblerror.Visible = true;
                 lblerror.Text = ex.Message.ToString();
                 grvSearch.DataBind();
+                oLog.WriteToLogFile_Debug("Completed with Error", ex.Message.ToString());
+                oLog.WriteToLogFile("Completed with Error", ex.Message.ToString());
+                // Get stack trace for the exception with source file information
+                var st = new StackTrace(ex, true);
+                // Get the top stack frame
+                var frame = st.GetFrame(0);
+                // Get the line number from the stack frame
+                var line = frame.GetFileLineNumber();
+                oLog.WriteToLogFile("Error Line Number", line.ToString());
             }
         }
 

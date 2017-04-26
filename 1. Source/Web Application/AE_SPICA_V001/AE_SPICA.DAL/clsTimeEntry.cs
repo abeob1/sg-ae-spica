@@ -178,7 +178,7 @@ namespace AE_SPICA.DAL
            "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") = '" + sDefaultDate + "' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") END)" +
                     "[IncidentDate],Status,Description FROM tbl_FileReference where (ISNULL('" + sVessel + "','') = '' OR Vessel like '%" + sVessel + "%')" +
                     "AND (ISNULL('" + sClub + "','') = '' OR ClubID like '%" + sClub + "%')" +
-                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%'" + sMember + "'%')" +
+                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%" + sMember + "%')" +
                     "AND (ISNULL('" + sFileReference + "','') = '' OR FileReferenceNo like '%" + sFileReference + "%')" +
                     "AND (ISNULL('" + sClaimHandler + "','') = '' OR ClaimHandler like '%" + sClaimHandler + "%')" +
                     "AND (ISNULL('" + sYear + "','') = '' OR [year] like '%" + sYear + "%')" +
@@ -191,7 +191,7 @@ namespace AE_SPICA.DAL
            "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") = '" + sDefaultDate + "' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") END)" +
                     "[IncidentDate],Status,Description FROM tbl_FileReference where (ISNULL('" + sVessel + "','') = '' OR Vessel like '%" + sVessel + "%')" +
                     "AND (ISNULL('" + sClub + "','') = '' OR ClubID like '%" + sClub + "%')" +
-                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%'" + sMember + "'%')" +
+                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%" + sMember + "%')" +
                     "AND (ISNULL('" + sFileReference + "','') = '' OR FileReferenceNo like '%" + sFileReference + "%')" +
                     "AND (ISNULL('" + sClaimHandler + "','') = '' OR ClaimHandler like '%" + sClaimHandler + "%')" +
                     "AND (ISNULL('" + sYear + "','') = '' OR [year] like '%" + sYear + "%')" +
@@ -204,7 +204,7 @@ namespace AE_SPICA.DAL
            "SELECT ID,FileReferenceNo,Vessel,(CASE WHEN CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") = '" + sDefaultDate + "' THEN '' ELSE CONVERT(CHAR(10), IncidentDate, " + sSQLFormat + ") END)" +
                     "[IncidentDate],Status,Description FROM tbl_FileReference where (ISNULL('" + sVessel + "','') = '' OR Vessel like '%" + sVessel + "%')" +
                     "AND (ISNULL('" + sClub + "','') = '' OR ClubID like '%" + sClub + "%')" +
-                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%'" + sMember + "'%')" +
+                    "AND (ISNULL('" + sMember + "','') = '' OR Member like '%" + sMember + "%')" +
                     "AND (ISNULL('" + sFileReference + "','') = '' OR FileReferenceNo like '%" + sFileReference + "%')" +
                     "AND (ISNULL('" + sClaimHandler + "','') = '' OR ClaimHandler like '%" + sClaimHandler + "%')" +
                     "AND (ISNULL('" + sYear + "','') = '' OR [year] like '%" + sYear + "%')" +

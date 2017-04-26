@@ -20197,3 +20197,21 @@
 [04/25/2017 4:25:18 PM][GetCompanyDetails()] Calling ExecuteSqlString()
 [04/25/2017 4:25:18 PM][GetCompanyDetails()] Query : SELECT '-- Select --' Code, '-- Select --' Name UNION ALL SELECT Code, Name FROM tbl_CompanyData WHERE ISNULL(IsActive,'Y') = 'Y'
 [04/25/2017 4:25:18 PM][GetCompanyDetails()] Completed with SUCCESS
+[04/26/2017 3:08:37 PM][GetCompanyDetails()] Calling ExecuteSqlString()
+[04/26/2017 3:08:37 PM][GetCompanyDetails()] Query : SELECT '-- Select --' Code, '-- Select --' Name UNION ALL SELECT Code, Name FROM tbl_CompanyData WHERE ISNULL(IsActive,'Y') = 'Y'
+[04/26/2017 3:08:38 PM][GetCompanyDetails()] Completed with SUCCESS
+[04/26/2017 3:09:05 PM][LoginValidation()] Calling Run_StoredProcedure()
+[04/26/2017 3:09:05 PM][LoginValidation()] Procedure : EXEC [AE_SP001_LoginCheck] 'ac','ac1234','SPC001'
+[04/26/2017 3:09:05 PM][LoginValidation()] Completed with SUCCESS
+[04/26/2017 3:09:21 PM][LoginValidation()] Calling Run_StoredProcedure()
+[04/26/2017 3:09:21 PM][LoginValidation()] Procedure : EXEC [AE_SP001_LoginCheck] 'paul','1234','SPC001'
+[04/26/2017 3:09:21 PM][LoginValidation()] Completed with SUCCESS
+[04/26/2017 3:09:25 PM][GetClaimHandler()] Calling ExecuteSqlString()
+[04/26/2017 3:09:25 PM][GetClaimHandler()] Query : SELECT '-- Select --' Code, '-- Select --' Name UNION ALL select distinct ClaimHandler 'Code', ClaimHandler 'Name' from tbl_FileReference order by Name
+[04/26/2017 3:09:25 PM][GetClaimHandler()] Completed with SUCCESS
+[04/26/2017 3:23:01 PM][GetClaimHandler()] Calling ExecuteSqlString()
+[04/26/2017 3:23:01 PM][GetClaimHandler()] Query : SELECT '-- Select --' Code, '-- Select --' Name UNION ALL select distinct ClaimHandler 'Code', ClaimHandler 'Name' from tbl_FileReference order by Name
+[04/26/2017 3:23:01 PM][GetClaimHandler()] Completed with SUCCESS
+[04/26/2017 3:28:45 PM][GetCompanyDetails()] Calling ExecuteSqlString()
+[04/26/2017 3:28:46 PM][GetCompanyDetails()] Query : SELECT '-- Select --' Code, '-- Select --' Name UNION ALL SELECT Code, Name FROM tbl_CompanyData WHERE ISNULL(IsActive,'Y') = 'Y'
+[04/26/2017 3:28:46 PM][GetCompanyDetails()] Completed with SUCCESS

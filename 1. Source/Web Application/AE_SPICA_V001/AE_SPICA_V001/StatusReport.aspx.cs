@@ -133,7 +133,14 @@ namespace AE_SPICA_V001
 
                 Response.Cookies[Constants.SRFromIncidentDate].Value = txtIncidentFromDate.Text;
                 Response.Cookies[Constants.SRToIncidentDate].Value = txtIncidentToDate.Text;
-                Response.Cookies[Constants.SRFromPeriodDate].Value = txtPeriodFromDate.Text;
+                if (txtPeriodFromDate.Text != string.Empty)
+                {
+                    Response.Cookies[Constants.SRFromPeriodDate].Value = txtPeriodFromDate.Text;
+                }
+                else
+                {
+                    Response.Cookies[Constants.SRFromPeriodDate].Value = "1900-01-01";
+                }
                 Response.Cookies[Constants.SRToPeriodDate].Value = txtPeriodToDate.Text;
                 Response.Cookies[Constants.SRFromCH].Value = ddlFromCH.SelectedItem.ToString(); ;
                 Response.Cookies[Constants.SRToCH].Value = ddlToCH.SelectedItem.ToString();

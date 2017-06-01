@@ -1,0 +1,1 @@
+10/11/2016 11:10:13 AM:Integration_RunQuery: exec AB_SalesOrder 'NEP/001/2016/AM','SPC001','NULL' ERROR:Conversion failed when converting date and/or time from character string.
